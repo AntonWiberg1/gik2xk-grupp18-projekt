@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const db = require('../models');
 const productService = require('../services/productService');
+const cartService = require('../services/cartService');
+
+
 
 router.get('/:name/posts', (req, res) => {
   const name = req.params.name;
@@ -42,7 +45,9 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
-
+//________________________
+//ANVÄND /CARTS/ADDPRODUCT
+//________________________
 // Lägg till en produkt i varukorgen
 router.post('/addProduct', async (req, res) => {
   const { userId, productId, amount } = req.body;
@@ -54,6 +59,8 @@ router.post('/addProduct', async (req, res) => {
   const result = await cartService.addProductToCart(userId, productId, amount);
   res.status(result.status).json(result.data);
 });
+
+
 
 
 router.post('/', (req, res) => {
@@ -74,3 +81,6 @@ router.delete('/', (req, res) => {
 });
 
 module.exports = router;
+
+
+
