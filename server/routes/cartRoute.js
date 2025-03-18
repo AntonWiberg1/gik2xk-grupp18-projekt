@@ -17,19 +17,19 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const tag = req.body;
-  db.tag.create(tag).then((result) => {
+  const cart = req.body;
+  db.cart.create(cart).then((result) => {
     res.send(result);
   });
 });
 
 router.delete('/', (req, res) => {
-  db.tag
+  db.cart
     .destroy({
       where: { id: req.body.id }
     })
     .then(() => {
-      res.json(`Inlägget raderades`);
+      res.json(`Varukorgen raderades`);
     });
 });
 

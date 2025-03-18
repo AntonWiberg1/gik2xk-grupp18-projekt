@@ -43,8 +43,8 @@ async function getByAuthor(userId) {
 async function getById(id) {
   try {
     const product = await db.product.findOne({
-      where: { id },
-    });
+      where: { id }, include: [{ model: db.rating, as: 'ratings' }]}
+    );
     /* Om allt blev bra, returnera product */
     return createResponseSuccess(_formatProduct(product));
   } catch (error) {
@@ -54,7 +54,8 @@ async function getById(id) {
 
 async function getAll() {
   try {
-    const allProducts = await db.product.findAll(); 
+    const allProducts = await db.product.findAll({include: [{ model: db.rating, as: 'ratings' }]}); 
+    
     /* Om allt blev bra, returnera allproducts */
     return createResponseSuccess(allProducts.map((product) => _formatProduct(product)));
   } catch (error) {
@@ -128,7 +129,7 @@ async function destroy(id) {
 }
 
 function _formatProduct(product) {
-  const cleanproduct = {
+  const cleanProduct = {
     id: product.id,
     title: product.title,
     description: product.description,
@@ -136,25 +137,19 @@ function _formatProduct(product) {
     createdAt: product.createdAt,
     updatedAt: product.updatedAt,
     price: product.price,
+    ratings: [],
   };
 
-  /*if (product.comments) {
-    cleanproduct.comments = [];
-
-    product.comments.map((comment) => {
-      return (cleanproduct.comments = [
-        {
-          title: comment.title,
-          body: comment.body,
-          author: comment.user.username,
-          createdAt: comment.createdAt
-        },
-        ...cleanproduct.comments
-      ]);
-    });
-  }*/
-    return cleanproduct;
+  if (product.ratings && Array.isArray(product.ratings)) {
+    cleanProduct.ratings = product.ratings.map((rating) => ({
+      id: rating.id,
+      rating: rating.rating,
+      productId: rating.product_id,
+    }));
   }
+
+  return cleanProduct;
+}
 
 async function _findOrCreateTagId(name) {
   name = name.toLowerCase().trim();
