@@ -1,0 +1,12 @@
+Noteringar för projektet. 
+
+Ändringar från startfil till projektbeskrivning:
+
+Databaser och routes:
+
+users = users
+posts = cart
+post_tags = cart_row
+tags = products
+comments = ratings
+
