@@ -40,14 +40,16 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-db.cart.belongsTo(db.user, { foreignKey: { allowNull: false } });
+db.cart.belongsTo(db.user, { foreignKey: 'userId' });
 db.user.hasMany(db.cart, {
+  foreignKey: 'userId',
   allowNull: false,
   onDelete: 'CASCADE'
 });
 
-db.rating.belongsTo(db.product);
+db.rating.belongsTo(db.product, { foreignKey: 'product_id' });
 db.product.hasMany(db.rating, {
+  foreignKey: 'product_id',
   allowNull: false,
   onDelete: 'CASCADE'
 });
