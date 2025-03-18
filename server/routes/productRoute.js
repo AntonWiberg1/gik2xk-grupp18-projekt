@@ -1,50 +1,57 @@
 const router = require('express').Router();
-const postService = require('../services/postService');
+const productService = require('../services/productService');
 
-/*
+
 router.post('/:id/addComment', (req, res) => {
   const comment = req.body;
   const id = req.params.id;
 
-  postService.addComment(id, comment).then((result) => {
+  productService.addComment(id, comment).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
+
+
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
-  postService.getById(id).then((result) => {
+  productService.getById(id).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
-*/
 
+
+// OK
 router.get('/', (req, res) => {
-  postService.getAll().then((result) => {
+  productService.getAll().then((result) => {
     res.status(result.status).json(result.data);
   });
 });
 
+// OK
 router.post('/', (req, res) => {
-  const post = req.body;
-  postService.create(post).then((result) => {
+  const product = req.body;
+  productService.create(product).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
 
+
+// OK
 router.put('/', (req, res) => {
-  const post = req.body;
-  const id = post.id;
+  const product = req.body;
+  const id = product.id;
 
-  postService.update(post, id).then((result) => {
+  productService.update(product, id).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
+
 
 router.delete('/', (req, res) => {
   const id = req.body.id;
-  postService.destroy(id).then((result) => {
+  productService.destroy(id).then((result) => {
     res.status(result.status).json(result.data);
   });
 });

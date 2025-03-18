@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../models');
 const validate = require('validate.js');
-const postService = require('../services/postService');
+const productService = require('../services/productService');
 
 const constraints = {
   email: {
@@ -33,7 +33,7 @@ const constraints = {
 router.get('/:id/posts', (req, res) => {
   const id = req.params.id;
 
-  postService.getByAuthor(id).then((result) => {
+  productService.getByAuthor(id).then((result) => {
     res.status(result.status).json(result.data);
   });
 });

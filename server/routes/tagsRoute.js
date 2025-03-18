@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const db = require('../models');
-const postService = require('../services/postService');
+const productService = require('../services/productService');
 
 router.get('/:name/posts', (req, res) => {
   const name = req.params.name;
 
-  postService.getByTag(name).then((result) => {
+  productService.getByTag(name).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
 
 router.get('/', (req, res) => {
-  db.tag.findAll().then((result) => {
+  db.cart.findAll().then((result) => {
     res.send(result);
   });
 });

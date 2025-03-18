@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { create, getOne, remove, update } from '../services/PostService';
+import { create, getOne, remove, update } from '../services/productService';
 import {
   Box,
   Button,

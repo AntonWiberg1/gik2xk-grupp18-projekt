@@ -4,7 +4,7 @@ import Comment from '../components/Comment';
 import { Alert, Box, Button, Container, List, Typography } from '@mui/material';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { addComment, getOne } from '../services/PostService';
+import { addComment, getOne } from '../services/productService';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import EditIcon from '@mui/icons-material/Edit';
 

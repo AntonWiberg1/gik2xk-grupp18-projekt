@@ -1,5 +1,5 @@
 import PostItemSmall from './PostItemSmall';
-import { getAll } from '../services/PostService';
+import { getAll } from '../services/productService';
 import { useEffect, useState } from 'react';
 
 function PostList({ pathname }) {
