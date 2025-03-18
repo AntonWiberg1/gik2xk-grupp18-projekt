@@ -62,14 +62,14 @@ async function getAll() {
   }
 }
 
-async function addComment(id, comment) {
+async function addRating(id, rating) {
   if (!id) {
     return createResponseError(422, 'Id är obligatoriskt');
   }
   try {
-    comment.productId = id;
-    const newComment = await db.comment.create(comment);
-    return createResponseSuccess(newComment);
+    rating.productId = id;
+    const newRating = await db.rating.create(rating);
+    return createResponseSuccess(newRating);
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
@@ -179,7 +179,7 @@ module.exports = {
   getByAuthor,
   getById,
   getAll,
-  addComment,
+  addRating,
   create,
   update,
   destroy

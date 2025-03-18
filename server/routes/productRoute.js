@@ -2,15 +2,15 @@ const router = require('express').Router();
 const productService = require('../services/productService');
 
 
-router.post('/:id/addComment', (req, res) => {
-  const comment = req.body;
+//fungerar inte 
+router.post('/:id/addRating', (req, res) => {
+  const rating = req.body;
   const id = req.params.id;
 
-  productService.addComment(id, comment).then((result) => {
+  productService.addRating(id, rating).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
-
 
 
 router.get('/:id', (req, res) => {
