@@ -5,8 +5,8 @@ Noteringar för projektet.
 Databaser och routes:
 
 users = users
-posts = cart
+posts = products
 post_tags = cart_row
-tags = products
+tags = cart
 comments = ratings
 

@@ -30,10 +30,10 @@ const constraints = {
   }
 };
 
-router.get('/:id/posts', (req, res) => {
+router.get('/:id/getCart', (req, res) => {
   const id = req.params.id;
 
-  productService.getByAuthor(id).then((result) => {
+  productService.getByCart(id).then((result) => {
     res.status(result.status).json(result.data);
   });
 });

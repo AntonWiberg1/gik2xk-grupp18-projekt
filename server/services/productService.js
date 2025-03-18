@@ -29,10 +29,10 @@ async function getByTag(tagName) {
   }
 }
 
-async function getByAuthor(userId) {
+async function getByCart(userId) {
   try {
     const user = await db.user.findOne({ where: { id: userId } });
-    const allproducts = await user.getproducts({ include: [db.user, db.tag] });
+    const allproducts = await user.getproducts({ include: [db.user, db.product] });
     /* Om allt blev bra, returnera allproducts */
     return createResponseSuccess(allproducts.map((product) => _formatProduct(product)));
   } catch (error) {
@@ -171,7 +171,7 @@ async function _addRatingToProduct(product, rating) {
 
 module.exports = {
   getByTag,
-  getByAuthor,
+  getByCart,
   getById,
   getAll,
   addRating,

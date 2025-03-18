@@ -2,7 +2,6 @@ const router = require('express').Router();
 const productService = require('../services/productService');
 
 
-//fungerar typ, rating går att lägga till men det visas inte på GET all. 
 router.post('/:id/addRating', (req, res) => {
   const rating = req.body;
   const id = req.params.id;
