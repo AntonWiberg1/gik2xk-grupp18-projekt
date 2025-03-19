@@ -19,30 +19,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// Hämta användarens varukorg
-router.get('/:id', async (req, res) => {
-  const id = req.params.id;
 
-  try {
-    const cart = await db.cart.findOne({
-      where: { user_id: id, payed: false },
-      include: [
-        {
-          model: db.product,
-          // through: { attributes: [] }  // Exclude cartRow fields from response
-        }
-      ]
-    });
-
-    if (!cart) {
-      return res.status(404).json({ message: 'Ingen aktiv varukorg hittades' });
-    }
-
-    res.json(cart);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
 
 //________________________

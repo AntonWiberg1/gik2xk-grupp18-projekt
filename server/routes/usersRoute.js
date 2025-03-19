@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../models');
 const validate = require('validate.js');
-const productService = require('../services/productService');
+const userService = require('../services/userService');
 
 const constraints = {
   email: {
@@ -30,13 +30,22 @@ const constraints = {
   }
 };
 
-router.get('/:id/getCart', (req, res) => {
+// Hämta användarens varukorg
+router.get('/:id/getCart', async (req, res) => {
+  const id = req.params.id;
+  
+  const result = await userService.getCartByUserId(id);  // FIX: Vänta på resultat
+  
+  res.status(result.status).json(result.data);  // FIX: Skicka status och data korrekt
+});
+
+/* router.get('/:id/getCart', (req, res) => {
   const id = req.params.id;
 
   productService.getByCart(id).then((result) => {
     res.status(result.status).json(result.data);
   });
-});
+}); */
 
 router.get('/', (req, res) => {
   db.user.findAll().then((result) => {
