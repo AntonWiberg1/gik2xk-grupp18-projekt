@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const productService = require('../services/productService');
 
+//__________ Alla routes fungerar som dom ska i postman ____//
 
+// OK i postman
 router.post('/:id/addRating', (req, res) => {
   const rating = req.body;
   const id = req.params.id;
@@ -12,6 +14,7 @@ router.post('/:id/addRating', (req, res) => {
 });
 
 
+// OK
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -47,7 +50,7 @@ router.put('/', (req, res) => {
   });
 });
 
-
+//OK
 router.delete('/', (req, res) => {
   const id = req.body.id;
   productService.destroy(id).then((result) => {
