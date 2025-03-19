@@ -40,9 +40,9 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-db.cart.belongsTo(db.user, { foreignKey: 'userId' });
+db.cart.belongsTo(db.user, { foreignKey: 'user_id' });
 db.user.hasMany(db.cart, {
-  foreignKey: 'userId',
+  foreignKey: 'user_id',
   allowNull: false,
   onDelete: 'CASCADE'
 });
@@ -60,6 +60,14 @@ db.user.hasMany(db.ratings, {
   onDelete: 'CASCADE'
 });
 */
+
+// Explicitly define the relationships for cartRow
+/* db.cart.hasMany(db.cartRow, { foreignKey: 'cart_id' });
+db.cartRow.belongsTo(db.cart, { foreignKey: 'cart_id' });
+
+db.product.hasMany(db.cartRow, { foreignKey: 'product_id' });
+db.cartRow.belongsTo(db.product, { foreignKey: 'product_id' }); */
+
 db.cart.belongsToMany(db.product, { through: db.cartRow });
 db.product.belongsToMany(db.cart, { through: db.cartRow });
 

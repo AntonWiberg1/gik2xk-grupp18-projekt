@@ -18,32 +18,32 @@ const constraints = {
   }
 };
 
-async function getByTag(tagName) {
+/* async function getByTag(tagName) {
   try {
     const tag = await db.tag.findOne({ where: { name: tagName } });
     const allproducts = await tag.getproducts({ include: [db.user, db.tag] });
-    /* Om allt blev bra, returnera allproducts */
+    
     return createResponseSuccess(allproducts.map((product) => _formatProduct(product)));
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
-}
+} */
 
-async function getByCart(userId) {
+/* async function getByCart(userId) {
   try {
     const user = await db.user.findOne({ where: { id: userId } });
     const allproducts = await user.getproducts({ include: [db.user, db.product] });
-    /* Om allt blev bra, returnera allproducts */
     return createResponseSuccess(allproducts.map((product) => _formatProduct(product)));
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
-}
+} */
 
 async function getById(id) {
   try {
     const product = await db.product.findOne({
-      where: { id }, include: [{ model: db.rating, as: 'ratings' }]}
+      where: { id }, include: [{ model: db.rating, as: 'ratings' }]
+    }
     );
     /* Om allt blev bra, returnera product */
     return createResponseSuccess(_formatProduct(product));
@@ -54,8 +54,8 @@ async function getById(id) {
 
 async function getAll() {
   try {
-    const allProducts = await db.product.findAll({include: [{ model: db.rating, as: 'ratings' }]}); 
-    
+    const allProducts = await db.product.findAll({ include: [{ model: db.rating, as: 'ratings' }] });
+
     /* Om allt blev bra, returnera allproducts */
     return createResponseSuccess(allProducts.map((product) => _formatProduct(product)));
   } catch (error) {
@@ -105,7 +105,7 @@ async function update(product, id) {
     if (!existingProduct) {
       return createResponseError(404, 'Hittade ingen produkt att uppdatera.');
     }
-    
+
     await db.product.update(product, {
       where: { id }
     });
@@ -122,7 +122,7 @@ async function destroy(id) {
     await db.product.destroy({
       where: { id }
     });
-    return createResponseMessage(200, 'Inlägget raderades.');
+    return createResponseMessage(200, 'Produkten raderades.');
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
@@ -151,14 +151,14 @@ function _formatProduct(product) {
   return cleanProduct;
 }
 
-async function _findOrCreateTagId(name) {
+/* async function _findOrCreateTagId(name) {
   name = name.toLowerCase().trim();
   const foundOrCreatedTag = await db.tag.findOrCreate({ where: { name } });
 
   return foundOrCreatedTag[0].id;
-}
+} */
 
-async function _addRatingToProduct(product, rating) {
+/* async function _addRatingToProduct(product, rating) {
   await db.productTag.destroy({ where: { productId: product.id } });
 
   if (tags) {
@@ -167,11 +167,11 @@ async function _addRatingToProduct(product, rating) {
       await product.addTag(tagId);
     });
   }
-}
+} */
 
 module.exports = {
-  getByTag,
-  getByCart,
+  //getByTag,
+  //getByCart,
   getById,
   getAll,
   addRating,

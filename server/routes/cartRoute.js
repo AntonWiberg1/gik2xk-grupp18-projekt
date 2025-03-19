@@ -5,13 +5,13 @@ const cartService = require('../services/cartService');
 
 
 
-router.get('/:name/posts', (req, res) => {
+/* router.get('/:name/posts', (req, res) => {
   const name = req.params.name;
 
   productService.getByTag(name).then((result) => {
     res.status(result.status).json(result.data);
   });
-});
+}); */
 
 router.get('/', (req, res) => {
   db.cart.findAll().then((result) => {
@@ -20,17 +20,16 @@ router.get('/', (req, res) => {
 });
 
 // Hämta användarens varukorg
-router.get('/:userId', async (req, res) => {
-  const { userId } = req.params;
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
 
   try {
     const cart = await db.cart.findOne({
-      where: { user_id: userId, payed: false },
+      where: { user_id: id, payed: false },
       include: [
         {
-          model: db.cartRow,
-          as: 'cartRows',
-          include: [{ model: db.product }] // Inkludera produktinfo
+          model: db.product,
+          // through: { attributes: [] }  // Exclude cartRow fields from response
         }
       ]
     });
@@ -44,6 +43,7 @@ router.get('/:userId', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 //________________________
 //ANVÄND /CARTS/ADDPRODUCT
