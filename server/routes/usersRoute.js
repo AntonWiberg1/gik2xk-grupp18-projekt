@@ -3,6 +3,7 @@ const db = require('../models');
 const validate = require('validate.js');
 const userService = require('../services/userService');
 
+
 const constraints = {
   email: {
     length: {
@@ -30,28 +31,23 @@ const constraints = {
   }
 };
 
+
 // Hämta användarens varukorg
 router.get('/:id/getCart', async (req, res) => {
   const id = req.params.id;
   
-  const result = await userService.getCartByUserId(id);  // FIX: Vänta på resultat
+  const result = await userService.getCartByUserId(id);
   
-  res.status(result.status).json(result.data);  // FIX: Skicka status och data korrekt
+  res.status(result.status).json(result.data);
 });
 
-/* router.get('/:id/getCart', (req, res) => {
-  const id = req.params.id;
-
-  productService.getByCart(id).then((result) => {
-    res.status(result.status).json(result.data);
-  });
-}); */
 
 router.get('/', (req, res) => {
   db.user.findAll().then((result) => {
     res.send(result);
   });
 });
+
 
 router.post('/', (req, res) => {
   const user = req.body;
@@ -64,6 +60,7 @@ router.post('/', (req, res) => {
     });
   }
 });
+
 
 router.put('/', (req, res) => {
   const user = req.body;
@@ -81,6 +78,8 @@ router.put('/', (req, res) => {
       });
   }
 });
+
+
 router.delete('/', (req, res) => {
   db.user
     .destroy({
@@ -90,5 +89,6 @@ router.delete('/', (req, res) => {
       res.json(`Inlägget raderades`);
     });
 });
+
 
 module.exports = router;
