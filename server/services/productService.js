@@ -5,7 +5,7 @@ const {
   createResponseMessage
 } = require('../helpers/responseHelper');
 const validate = require('validate.js');
-const product = require('../models/product');
+
 
 const constraints = {
   title: {
@@ -18,26 +18,6 @@ const constraints = {
   }
 };
 
-/* async function getByTag(tagName) {
-  try {
-    const tag = await db.tag.findOne({ where: { name: tagName } });
-    const allproducts = await tag.getproducts({ include: [db.user, db.tag] });
-    
-    return createResponseSuccess(allproducts.map((product) => _formatProduct(product)));
-  } catch (error) {
-    return createResponseError(error.status, error.message);
-  }
-} */
-
-/* async function getByCart(userId) {
-  try {
-    const user = await db.user.findOne({ where: { id: userId } });
-    const allproducts = await user.getproducts({ include: [db.user, db.product] });
-    return createResponseSuccess(allproducts.map((product) => _formatProduct(product)));
-  } catch (error) {
-    return createResponseError(error.status, error.message);
-  }
-} */
 
 async function getById(id) {
   try {
@@ -45,23 +25,23 @@ async function getById(id) {
       where: { id }, include: [{ model: db.rating, as: 'ratings' }]
     }
     );
-    /* Om allt blev bra, returnera product */
     return createResponseSuccess(_formatProduct(product));
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
 }
 
+
 async function getAll() {
   try {
     const allProducts = await db.product.findAll({ include: [{ model: db.rating, as: 'ratings' }] });
 
-    /* Om allt blev bra, returnera allproducts */
     return createResponseSuccess(allProducts.map((product) => _formatProduct(product)));
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
 }
+
 
 async function addRating(id, rating) {
   if (!id) {
@@ -76,6 +56,7 @@ async function addRating(id, rating) {
   }
 }
 
+
 async function create(product) {
   const invalidData = validate(product, constraints);
   if (invalidData) {
@@ -83,14 +64,12 @@ async function create(product) {
   }
   try {
     const newProduct = await db.product.create(product);
-    //product tags är en array av namn
-    //lägg till eventuella taggar
-
     return createResponseSuccess(newProduct);
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
 }
+
 
 async function update(product, id) {
   const invalidData = validate(product, constraints);
@@ -114,6 +93,8 @@ async function update(product, id) {
     return createResponseError(error.status, error.message);
   }
 }
+
+
 async function destroy(id) {
   if (!id) {
     return createResponseError(422, 'Id är obligatoriskt');
@@ -127,6 +108,7 @@ async function destroy(id) {
     return createResponseError(error.status, error.message);
   }
 }
+
 
 function _formatProduct(product) {
   const cleanProduct = {
@@ -147,27 +129,9 @@ function _formatProduct(product) {
       productId: rating.product_id,
     }));
   }
-
   return cleanProduct;
 }
 
-/* async function _findOrCreateTagId(name) {
-  name = name.toLowerCase().trim();
-  const foundOrCreatedTag = await db.tag.findOrCreate({ where: { name } });
-
-  return foundOrCreatedTag[0].id;
-} */
-
-/* async function _addRatingToProduct(product, rating) {
-  await db.productTag.destroy({ where: { productId: product.id } });
-
-  if (tags) {
-    tags.forEach(async (tag) => {
-      const tagId = await _findOrCreateTagId(tag);
-      await product.addTag(tagId);
-    });
-  }
-} */
 
 module.exports = {
   //getByTag,
