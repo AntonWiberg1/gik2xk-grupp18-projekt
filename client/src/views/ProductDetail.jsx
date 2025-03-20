@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
 import ProductItemLarge from '../components/ProductItemLarge'
 import {useNavigate} from 'react-router-dom';
+import ReviewForm from "../components/ReviewForm";
+import Review from '../components/Review'
 
 function ProductDetail() {
   const product ={
@@ -34,8 +36,11 @@ function ProductDetail() {
   const navigate = useNavigate();
   return (
   <div>
-    <ProductItemLarge />
+    <ProductItemLarge product = {product} />
     <Button onClick ={() => navigate (-1)}> Tillbaka </Button>
+    <ReviewForm/>
+    {product.reviews && product.reviews.map((review, i) => <Review key ={`review${i}`}
+    review = {review}/>)}
   </div>
   );
 
