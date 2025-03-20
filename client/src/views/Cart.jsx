@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MailIcon from '@mui/icons-material/Mail';
 import CartList from '../components/CartList';
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 // Styr om drawer ska vara öppen eller stängd
 export default function Cart({ cartOpen, setCartOpen }) {
@@ -35,6 +36,13 @@ export default function Cart({ cartOpen, setCartOpen }) {
       </List>
       <Divider />
       <CartList/>
+      <Divider />
+      <ListItemButton>
+            <ListItemIcon>
+              <ShoppingBagIcon />
+            </ListItemIcon>
+            <ListItemText primary="Checkout" />
+          </ListItemButton>
     </Box>
   );
 
