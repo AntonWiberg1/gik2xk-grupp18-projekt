@@ -13,6 +13,12 @@ function App() {
           <Link to="/">Webshop</Link>
           </Typography>
           <Button color="inherit">
+            <Link to="/products/">Våra produkter</Link>
+            </Button>
+          <Button color="inherit">
+            <Link to="/cart">Varukorg</Link>
+            </Button>
+          <Button color="inherit">
             <Link to="/products/new">Lägg till produkt</Link>
             </Button>
         </Toolbar>
