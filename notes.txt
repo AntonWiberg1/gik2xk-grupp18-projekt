@@ -10,3 +10,19 @@ post_tags = cart_row
 tags = cart
 comments = ratings
 
+
+1. FÖRSLAG PÅ VYER
+• Vy för att titta på en lista av alla produkter (/) Posts
+o En mer kompakt variant av varje produkt visas. 
+o Rating för produkt kan presenteras med hjälp av Material UI:s "Rating"-
+komponent. 
+• Vy för att titta se mer detaljer om produkt (/products/:id) = postDetail
+o Samtliga detaljer om produkten visas. 
+o Man ska kunna ge rating på produkten. 
+o Rating för produkt kan presenteras och sättas med hjälp av Material UI:s 
+"Rating"-komponent. 
+• Vy för att se sin varukorg med en lista av produkter och summa av deras pris
+o Detta kan vara en egen vy (/cart) eller någon typ av popup-ruta, 
+exemelvis Material UI:s ”Dialog”-komponent. 
+• Vy för att lägga till och ändra produkter. (/products/:id/edit, /products/new) = postEdit 
+
