@@ -1,8 +1,11 @@
 import { Link, Outlet } from "react-router-dom"
 import {Box, Toolbar, Typography, Button, AppBar} from '@mui/material';
+import { useState } from "react";
+import Cart from "./views/Cart";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function App() {
-
+  const [cartOpen, setCartOpen] = useState(false);
 
   return (
     <>
@@ -16,15 +19,16 @@ function App() {
             <Link to="/products/">Våra produkter</Link>
             </Button>
           <Button color="inherit">
-            <Link to="/cart">Varukorg</Link>
-            </Button>
-          <Button color="inherit">
             <Link to="/products/new">Lägg till produkt</Link>
+            </Button>
+            <Button onClick={() => setCartOpen(true)} color="inherit">
+            <ShoppingCartIcon />   
             </Button>
         </Toolbar>
       </AppBar>
     </Box>
       <Outlet />
+      <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />
     </>
   )
 }
