@@ -30,3 +30,12 @@ exemelvis Material UI:s ”Dialog”-komponent.
 ProductEdit
 • Vy för att lägga till och ändra produkter. (/products/:id/edit, /products/new) = postEdit 
 
+
+_______________________________________________
+Higher order components - React //Lektion 5
+
+post list -> productList (productItemSmall)
+klicka på product -> productItemLarge
+
+Tag field -> Review field?
+comments - > reviews?
