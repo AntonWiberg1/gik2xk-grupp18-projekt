@@ -1,3 +1,4 @@
+import CartRowItem from './CartRowItem';
 import ProductItemSmall from './ProductItemSmall';
 
 function CartList() {
@@ -28,7 +29,8 @@ function CartList() {
     ];
 
     return (
-        <ul>
+        <>
+        <ul >
             {carts?.length > 0 ? (
                 carts.map(cart => (
                     <li key={`carts_${cart.id}`}>
@@ -36,7 +38,7 @@ function CartList() {
                         <ul>
                             {cart.products.map(product => (
                                 <li key={`product_${product.id}`}>
-                                    <ProductItemSmall product={product} />
+                                    <CartRowItem product={product} />
                                 </li>
                             ))}
                         </ul>
@@ -46,6 +48,7 @@ function CartList() {
                 <h3>Kunde inte hämta korg</h3>
             )}
         </ul>
+        </>
     );
 }
 

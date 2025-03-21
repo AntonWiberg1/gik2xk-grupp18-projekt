@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import ProductItemSmall from './ProductItemSmall';
 
 function ProductList (){
@@ -69,7 +70,8 @@ function ProductList (){
     
 
         return (
-            <ul>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+            <ul >
                 {products?.length > 0 ? 
                 products.map((product =>(
                     <li key ={`products_${product.id}`}>
@@ -81,6 +83,7 @@ function ProductList (){
                 )} 
                 
             </ul>
+            </Box>
         );
 }
 
