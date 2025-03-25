@@ -1,7 +1,7 @@
 import ProductItemSmall from "./ProductItemSmall";
 import { getAll } from "../services/ProductService";
 import { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+
 
 function ProductList({ pathname }) {
   const [products, setProducts] = useState([]);

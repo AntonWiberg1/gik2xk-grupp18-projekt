@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 function CartList() {
-  const [cart, setCart] = useState(7);
+  const [cart, setCart] = useState(1);
 
   useEffect(() => {
     getOne(3).then((cart) => {
