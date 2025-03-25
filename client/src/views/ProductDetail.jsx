@@ -1,29 +1,31 @@
-import { useParams, useLocation } from "react-router-dom";
-import ProductItemLarge from "../components/ProductItemLarge";
-import { Button } from "@mui/material";
-import Review from "../components/Review";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getOne, remove } from "../services/ProductService";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import HoverRating from "../components/HoverRating";
+import { getOne, remove } from "../services/ProductService";
+import ReviewForm from "../components/ReviewForm";
 
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-
+  const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
       getOne(id).then((product) => {
         if (product) {
           setProduct(product);
+          setReviews(product.ratings || []);
         }
       });
     }
   }, [id]);
 
-  const navigate = useNavigate();
+  const handleNewReview = (newReview) => {
+    setReviews((prev) => [...prev, newReview]);
+  };
 
   async function onDelete() {
     try {
@@ -34,31 +36,43 @@ function ProductDetail() {
       console.error(error);
     }
   }
-  
-
 
   return (
-    <div>
+    <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2, mt: 3, bgcolor: 'background.paper' }}>
       {product ? (
         <>
-          <ProductItemLarge product={product} />
-          <Button onClick={() => navigate(-1)}>Tillbaka</Button>
-          <Button 
-                startIcon={<DeleteIcon/>} 
-                onClick={onDelete}
-                variant="contained" 
-                color="error">
-              Ta bort 
-              </Button>
+          <Typography variant="h4" gutterBottom>{product.title}</Typography>
+          <Typography variant="h6" gutterBottom>Pris: {product.price ?? 'Ej angivet'} kr</Typography>
+
+          <HoverRating ratings={reviews} onReviewSubmit={handleNewReview} />
+          <ReviewForm productId={product.id} onReviewSubmit={handleNewReview} />
+
+          <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 3 }}>
+            
+            <Button
+              onClick={() => navigate(-1)}
+              variant="contained"
+              color="primary"
+            >
+              Tillbaka
+            </Button>
+
+            <Button
+              startIcon={<DeleteIcon />}
+              onClick={onDelete}
+              variant="contained"
+              color="error"
+            >
+              Ta bort
+            </Button>
           
-          {product.reviews?.map((review, i) => (
-            <Review key={`review${i}`} review={review} />
-          ))}
+          </Box>
+
         </>
       ) : (
-        <h3>Produkt ej funnen</h3>
+        <Typography variant="h6" color="error">Produkt ej funnen</Typography>
       )}
-    </div>
+    </Box>
   );
 }
 

@@ -24,7 +24,7 @@ export default function Cart({ cartOpen, setCartOpen }) {
   };
 
   const cartContent = (
-    <Box sx={{ width: 400 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+    <Box sx={{ width: 400 }} role="presentation" onKeyDown={toggleDrawer(false)}>
       <List>
         <ListItem disablePadding>
           <ListItemButton>
