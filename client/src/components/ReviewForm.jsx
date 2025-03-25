@@ -1,14 +1,17 @@
-import {Button} from '@mui/material'
+import {Box, Button} from '@mui/material'
+import HoverRating from './HoverRating';
 
 function ReviewForm (){
-    return(<form>
+    return(
+        
+    <Box>
         <div>
-        Titel: <input type = "text" />
+        Add rating: <HoverRating />
         </div>
         <div>
-        Innehåll: <textarea rows = "5"></textarea>
+        Rewiew: <textarea rows = "3"></textarea>
         </div>
-        <Button> Skicka kommentar</Button>
-    </form>);
+        <Button> Lämna recension</Button>
+    </Box>);
 }
 export default ReviewForm;

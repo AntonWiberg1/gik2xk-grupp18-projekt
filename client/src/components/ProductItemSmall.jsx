@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import HoverRating from './HoverRating';
 
 function ProductItemSmall({ product }) {
     return (
@@ -24,6 +25,7 @@ function ProductItemSmall({ product }) {
                 <h4>{product.title}</h4>
             </Link>
         </Typography>
+        
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         <p>Price: ${product.price}</p>
             {product.amount && <p>Amount: {product.amount}</p>} {/* Display amount if it exists */}
@@ -38,6 +40,7 @@ function ProductItemSmall({ product }) {
                 </>
             )}
         </Typography>
+        <HoverRating />
       </CardContent>
       <CardActions>
         <Button size="small">Lägg i varukorg</Button>
