@@ -3,6 +3,7 @@ import { removeOne, addOne } from "../services/CartService";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
+
 // product här är inte en product utan det är en cartRow eftersom att vi kan komma åt product.amount
 function CartRowItem({ product, onCartChange }) {
   const handleAdd = async () => {
@@ -33,6 +34,7 @@ function CartRowItem({ product, onCartChange }) {
           <Button onClick={handleRemove}>
             <RemoveCircleIcon></RemoveCircleIcon>
           </Button>
+
         </Box>
       </Paper>
     </>
