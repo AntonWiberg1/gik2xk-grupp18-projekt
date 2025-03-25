@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import { getOne } from "../services/CartService";
 import CartRowItem from "./CartRowItem";
-import {
-  List,
-  ListItem,
-  Typography,
-  Paper,
-  Divider,
-  Box,
-} from "@mui/material";
+import { List, ListItem, Typography, Paper, Divider, Box, ListItemButton, ListItemIcon } from "@mui/material";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import ListItemText from "@mui/material/ListItemText";
+import { markAsPayed } from "../services/CartService";
 
 function CartList() {
-  const [cart, setCart] = useState(7);
+  const [cart, setCart] = useState();
 
   useEffect(() => {
     getOne(3).then((cart) => {
@@ -39,6 +35,12 @@ function CartList() {
               {index < cart.products.length - 1 && <Divider />}
             </div>
           ))}
+          <ListItemButton onClick={() => markAsPayed(cart.id)}>
+            <ListItemIcon>
+              <ShoppingBagIcon />
+            </ListItemIcon>
+            <ListItemText primary="Checkout" />
+          </ListItemButton>
         </List>
       </Paper>
     </Box>
