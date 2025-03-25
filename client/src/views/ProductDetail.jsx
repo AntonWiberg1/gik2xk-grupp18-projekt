@@ -11,6 +11,7 @@ function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
+
   useEffect(() => {
     if (id) {
       getOne(id).then((product) => {
@@ -29,7 +30,7 @@ function ProductDetail() {
         <>
           <ProductItemLarge product={product} />
           <Button onClick={() => navigate(-1)}>Tillbaka</Button>
-          <ReviewForm />
+          
           {product.reviews?.map((review, i) => (
             <Review key={`review${i}`} review={review} />
           ))}

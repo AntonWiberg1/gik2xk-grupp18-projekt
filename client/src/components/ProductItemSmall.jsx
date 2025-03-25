@@ -34,18 +34,20 @@ function ProductItemSmall({ product }) {
                 </ul>
               </>
             )}
-          </Typography>
-          <HoverRating />
-        </CardContent>
-        <CardActions>
-          <Button size="small" onClick={() => addOne(product.id)}>
+
+        </Typography>
+        <HoverRating ratings={product.ratings} />
+      </CardContent>
+      <CardActions>
+      <Button size="small" onClick={() => addOne(product.id)}>
             Lägg i varukorg
           </Button>
-          <Button size="small">Läs mer</Button>
-        </CardActions>
-      </Card>
-    </>
-  );
+        <Button size="small">Läs mer</Button>
+      </CardActions>
+    </Card>
+            
+        </>
+    );
 }
 
 export default ProductItemSmall;
