@@ -30,3 +30,24 @@ export async function getOne(id) {
         e?.response ? console.log(e.response.data) : console.log(e);
     }
 }
+
+export async function addOne(productId) {
+    const userId = 3;
+    const amount = 1;
+    try {
+        const response = await axios.post(`/carts/addProduct/`, {
+            userId,
+            productId,
+            amount
+        });
+
+        if (response.status === 200) return response.data;
+        else {
+            console.log(response);
+            return null;
+        }
+    }
+    catch (e) {
+        e?.response ? console.log(e.response.data) : console.log(e);
+    }
+}
