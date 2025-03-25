@@ -1,12 +1,31 @@
 import { Link } from 'react-router-dom';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function ProductItemSmall({ product }) {
     return (
         <>
-            <Link to={`/products/${product.id}`}>
-                <h3>{product.title}</h3>
+
+<Card sx={{ mb: 3, maxWidth: 250 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image="\src\assets\react.svg"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+        <Link to={`/products/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                <h4>{product.title}</h4>
             </Link>
-            <p>Price: ${product.price}</p>
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <p>Price: ${product.price}</p>
             {product.amount && <p>Amount: {product.amount}</p>} {/* Display amount if it exists */}
             {product.ratings && ( // Check if ratings exist
                 <>
@@ -18,6 +37,14 @@ function ProductItemSmall({ product }) {
                     </ul>
                 </>
             )}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Lägg i varukorg</Button>
+        <Button size="small">Läs mer</Button>
+      </CardActions>
+    </Card>
+            
         </>
     );
 }

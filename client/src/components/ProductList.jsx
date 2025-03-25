@@ -1,6 +1,8 @@
 import ProductItemSmall from "./ProductItemSmall";
 import { getAll } from "../services/ProductService";
 import { useEffect, useState } from "react";
+import { Box } from '@mui/material';
+import ProductItemSmall from './ProductItemSmall';
 
 function ProductList({ pathname }) {
   const [products, setProducts] = useState([]);
@@ -23,6 +25,22 @@ function ProductList({ pathname }) {
       )}
     </ul>
   );
+        return (
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+            <ul >
+                {products?.length > 0 ? 
+                products.map((product =>(
+                    <li key ={`products_${product.id}`}>
+                        <ProductItemSmall product = {product} />
+                    </li>
+                ))
+                ) : (
+                    <h3> Kunde inte hämta inlägg </h3>
+                )} 
+                
+            </ul>
+            </Box>
+        );
 }
 
 export default ProductList;
