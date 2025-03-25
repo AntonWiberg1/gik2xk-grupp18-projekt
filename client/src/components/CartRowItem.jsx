@@ -1,4 +1,7 @@
 import { Box, Typography, Paper, Button } from "@mui/material";
+import { removeOne, addOne } from "../services/CartService";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 // product här är inte en product utan det är en cartRow eftersom att vi kan komma åt product.amount
 function CartRowItem({ product }) {
@@ -13,7 +16,13 @@ function CartRowItem({ product }) {
               {product.price} kr x {product.amount}
             </Typography>
           </Box>
-          <Button>Ta bort</Button>
+
+          <Button onClick={() => addOne(product.id)}>
+            <AddCircleIcon></AddCircleIcon>
+          </Button>
+          <Button onClick={() => removeOne(product.id)}>
+            <RemoveCircleIcon></RemoveCircleIcon>
+          </Button>
         </Box>
       </Paper>
     </>
