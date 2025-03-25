@@ -8,7 +8,6 @@ function CartRowItem({product}) {
         <Box><Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
 
         <Box
-        
             component="img"
             src={product.imageUrl}
             alt={product.title}

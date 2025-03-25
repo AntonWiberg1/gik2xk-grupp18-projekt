@@ -2,6 +2,8 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const path = require('path');
+
 var app = express();
 app.use(logger('dev'));
 app.use(express.json());
@@ -17,5 +19,7 @@ app.use((req, res, next) => {
 app.use('/products', require('./routes/productRoute'));
 app.use('/users', require('./routes/usersRoute'));
 app.use('/carts', require('./routes/cartRoute'));
+
+app.use('/images', express.static(path.join(__dirname, 'stockImages')));
 
 module.exports = app;
