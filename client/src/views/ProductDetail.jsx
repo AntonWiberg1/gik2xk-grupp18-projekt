@@ -1,49 +1,44 @@
+import { useParams, useLocation } from "react-router-dom";
+import ProductItemLarge from "../components/ProductItemLarge";
 import { Button } from "@mui/material";
-import ProductItemLarge from '../components/ProductItemLarge'
-import {useNavigate} from 'react-router-dom';
 import ReviewForm from "../components/ReviewForm";
-import Review from '../components/Review'
+import Review from "../components/Review";
+import { useEffect, useState } from "react";
+import { getOne } from "../services/ProductService";
+import { useNavigate } from "react-router-dom";
 
 function ProductDetail() {
-  const product ={
-    
-      "id": 1,
-      "title": "Laptop",
-      "description": "A high-performance laptop",
-      "imageUrl": "laptop.jpg",
-      "createdAt": "2025-03-19T13:01:01.000Z",
-      "updatedAt": "2025-03-19T13:01:01.000Z",
-      "price": 1200.99,
-      "ratings": [
-          {
-              "id": 1,
-              "rating": 4.5,
-              "productId": 1
-          },
-          {
-              "id": 4,
-              "rating": 3.9,
-              "productId": 1
-          },
-          {
-              "id": 6,
-              "rating": 5,
-              "productId": 1
-          }
-      ]
-  
-  };
-  const navigate = useNavigate();
-  return (
-  <div>
-    <ProductItemLarge product = {product} />
-    <Button onClick ={() => navigate (-1)}> Tillbaka </Button>
-    <ReviewForm/>
-    {product.reviews && product.reviews.map((review, i) => <Review key ={`review${i}`}
-    review = {review}/>)}
-  </div>
-  );
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
+  useEffect(() => {
+    if (id) {
+      getOne(id).then((product) => {
+        if (product) {
+          setProduct(product);
+        }
+      });
+    }
+  }, [id]);
+
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      {product ? (
+        <>
+          <ProductItemLarge product={product} />
+          <Button onClick={() => navigate(-1)}>Tillbaka</Button>
+          <ReviewForm />
+          {product.reviews?.map((review, i) => (
+            <Review key={`review${i}`} review={review} />
+          ))}
+        </>
+      ) : (
+        <h3>Produkt ej funnen</h3>
+      )}
+    </div>
+  );
 }
 
 export default ProductDetail;

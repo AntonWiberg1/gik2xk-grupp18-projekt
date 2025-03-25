@@ -24,22 +24,6 @@ function ProductList({ pathname }) {
       )}
     </ul>
   );
-  /*         return (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-            <ul >
-                {products?.length > 0 ? 
-                products.map((product =>(
-                    <li key ={`products_${product.id}`}>
-                        <ProductItemSmall product = {product} />
-                    </li>
-                ))
-                ) : (
-                    <h3> Kunde inte hämta inlägg </h3>
-                )} 
-                
-            </ul>
-            </Box>
-        ); */
 }
 
 export default ProductList;
