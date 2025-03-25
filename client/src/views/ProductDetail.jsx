@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, CardMedia } from "@mui/material"; // Added CardMedia
 import DeleteIcon from '@mui/icons-material/Delete';
 import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";
@@ -41,6 +41,21 @@ function ProductDetail() {
     <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2, mt: 3, bgcolor: 'background.paper' }}>
       {product ? (
         <>
+        <CardMedia
+            component="img"
+            alt={product.title}
+            height="500"
+            image={`http://localhost:5000/images/${product.imageUrl}`}
+            sx={{ 
+              objectFit: 'contain',
+              backgroundColor: '#f5f5f5',
+              mb: 2,
+              borderRadius: 1
+            }}
+            onError={(e) => {
+              e.target.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+            }}
+          />
           <Typography variant="h4" gutterBottom>{product.title}</Typography>
           <Typography variant="h6" gutterBottom>Pris: {product.price ?? 'Ej angivet'} kr</Typography>
 

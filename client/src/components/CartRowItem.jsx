@@ -1,43 +1,66 @@
-import { Box, Typography, Paper, Button } from "@mui/material";
+import { Box, Typography, Paper, Button, CardMedia } from "@mui/material";
 import { removeOne, addOne } from "../services/CartService";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
-
-// product här är inte en product utan det är en cartRow eftersom att vi kan komma åt product.amount
-function CartRowItem({ product, onCartChange }) {
+function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop internally
   const handleAdd = async () => {
-    await addOne(product.id);
+    await addOne(cartProduct.id);
     onCartChange();
   };
 
   const handleRemove = async () => {
-    await removeOne(product.id);
+    await removeOne(cartProduct.id);
     onCartChange();
   };
 
+  // Safely access product details (works with both cart row and full product objects)
+  const productData = cartProduct.product || cartProduct;
+  const imageUrl = productData.image_url || productData.imageUrl;
+
   return (
-    <>
-      <Paper elevation={1} sx={{ p: 0.5, mb: 1, mr: 1 }}>
-        <Box display="flex" justifyContent="space-between" alignItems="flex-start">
+    <Paper elevation={1} sx={{ p: 0.5, mb: 1, mr: 1 }}>
+      <Box display="flex" justifyContent="space-between" alignItems="flex-start">
+        <Box display="flex" alignItems="center">
+          {/* Product Image */}
+          <Box sx={{ width: 80, height: 80, mr: 2, flexShrink: 0 }}>
+            <CardMedia
+              component="img"
+              alt={productData.title}
+              image={imageUrl ? `http://localhost:5000/images/${imageUrl}` : ''}
+              sx={{ 
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                backgroundColor: '#f5f5f5',
+                borderRadius: 1
+              }}
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/80?text=Image+Not+Found';
+              }}
+            />
+          </Box>
+          
+          {/* Product Info */}
           <Box>
-            <Box component="img" src={product.imageUrl} alt={product.title} sx={{ width: 80, height: 80, objectFit: "contain", mb: 1 }} />
-            <Typography variant="body1">{product.title}</Typography>
+            <Typography variant="body1">{productData.title}</Typography>
             <Typography variant="body2" color="text.secondary">
-              {product.price} kr x {product.amount}
+              {productData.price} kr x {cartProduct.amount || 1}
             </Typography>
           </Box>
-
-          <Button onClick={handleAdd}>
-            <AddCircleIcon></AddCircleIcon>
-          </Button>
-          <Button onClick={handleRemove}>
-            <RemoveCircleIcon></RemoveCircleIcon>
-          </Button>
-
         </Box>
-      </Paper>
-    </>
+
+        {/* Action Buttons */}
+        <Box display="flex">
+          <Button onClick={handleRemove}>
+            <RemoveCircleIcon />
+          </Button>
+          <Button onClick={handleAdd}>
+            <AddCircleIcon />
+          </Button>
+        </Box>
+      </Box>
+    </Paper>
   );
 }
 

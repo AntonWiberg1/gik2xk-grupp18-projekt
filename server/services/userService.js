@@ -30,7 +30,7 @@ async function getCartByUserId(id){
           title: product.title,
           description: product.description,
           price: product.price,
-          imageUrl: product.imageUrl,
+          image_url: product.image_url,
           amount: product.cartRow.amount, 
         })),
       };
