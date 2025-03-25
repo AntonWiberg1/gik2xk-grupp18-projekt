@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, TextField, Rating } from "@mui/material";
-import { addRating } from "../services/productService";
+import { addRating } from "../services/ProductService";
 
 function ReviewForm({ productId, onReviewSubmit }) {
     const [rating, setRating] = useState(0);
