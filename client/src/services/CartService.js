@@ -56,7 +56,7 @@ export async function removeOne(productId) {
     const userId = 3;
     const amount = 1;
     try {
-        const response = await axios.post(`/carts/removeProduct/`, {
+        const response = await axios.put(`/carts/removeProduct/`, {
             userId,
             productId,
             amount
