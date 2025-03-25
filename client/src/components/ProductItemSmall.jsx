@@ -31,8 +31,9 @@ function ProductItemSmall({ product }) {
           <Button size="small" onClick={() => addOne(product.id)}>
             Lägg i varukorg
           </Button>
-        <Button size="small">
-        <Link to={`/products/${product.id}`}> <p>Läs mer</p></Link></Button>
+          <Button size="small" component={Link} to={`/products/${product.id}`}>
+          Läs mer
+          </Button>
       </CardActions>
     </Card>
             

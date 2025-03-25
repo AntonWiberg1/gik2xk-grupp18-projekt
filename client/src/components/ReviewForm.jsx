@@ -43,7 +43,7 @@ function ReviewForm({ productId, onReviewSubmit }) {
                 />
             </div>
            
-            <Button onClick={handleSubmit} variant="contained">Lämna recension</Button>
+            <Button onClick={handleSubmit} variant="contained" color="success">Lämna recension</Button>
         </Box>
     );
 }
