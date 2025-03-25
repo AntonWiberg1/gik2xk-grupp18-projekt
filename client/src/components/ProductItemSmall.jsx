@@ -24,22 +24,11 @@ function ProductItemSmall({ product }) {
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <p>Price: ${product.price}</p>
             {product.amount && <p>Amount: {product.amount}</p>} {/* Display amount if it exists */}
-            {product.ratings && ( // Check if ratings exist
-              <>
-                <p>Reviews:</p>
-                <ul>
-                  {product.ratings.map((rating) => (
-                    <li key={rating.id}>Rating: {rating.rating}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-        </Typography>
-        <HoverRating ratings={product.ratings} />
-      </CardContent>
-      <CardActions>
-      <Button size="small" onClick={() => addOne(product.id)}>
+          </Typography>
+          <HoverRating ratings={product.ratings} />
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={() => addOne(product.id)}>
             Lägg i varukorg
           </Button>
         <Button size="small">
