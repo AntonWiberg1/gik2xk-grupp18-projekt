@@ -31,11 +31,13 @@ function ProductItemSmall({ product }) {
           <Button size="small" onClick={() => addOne(product.id)}>
             Lägg i varukorg
           </Button>
-          <Button size="small">Läs mer</Button>
-        </CardActions>
-      </Card>
-    </>
-  );
+        <Button size="small">
+        <Link to={`/products/${product.id}`}> <p>Läs mer</p></Link></Button>
+      </CardActions>
+    </Card>
+            
+        </>
+    );
 }
 
 export default ProductItemSmall;

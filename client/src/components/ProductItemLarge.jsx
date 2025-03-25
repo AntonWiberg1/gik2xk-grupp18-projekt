@@ -1,6 +1,9 @@
 import { useState } from "react";
 import HoverRating from "./HoverRating";
 import ReviewForm from "./ReviewForm";
+import { Button } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 function ProductItemLarge({ product }) {
     const [reviews, setReviews] = useState(product.ratings || []);
@@ -8,6 +11,8 @@ function ProductItemLarge({ product }) {
     const handleNewReview = (newReview) => {
         setReviews([...reviews, newReview]); // Update UI immediately
     };
+
+    
 
     return (
         <div>
@@ -31,6 +36,7 @@ function ProductItemLarge({ product }) {
             )}
 
             <ReviewForm productId={product.id} onReviewSubmit={handleNewReview} />
+            
         </div>
     );
 }
