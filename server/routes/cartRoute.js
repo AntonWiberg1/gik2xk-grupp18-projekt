@@ -24,6 +24,16 @@ router.post('/addProduct', async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
+router.put('/removeProduct', async (req, res) => {
+  const { userId, productId, amount } = req.body;
+
+  if (!userId || !productId || !amount) {
+    return res.status(400).json({ message: 'userId, productId och amount krävs' });
+  }
+  const result = await cartService.removeProductFromCart(userId, productId, amount);
+  res.status(result.status).json(result.data);
+});
+
 
 router.post('/', (req, res) => {
   const cart = req.body;
