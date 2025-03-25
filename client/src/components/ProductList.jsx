@@ -1,7 +1,8 @@
 import ProductItemSmall from "./ProductItemSmall";
 import { getAll } from "../services/ProductService";
 import { useEffect, useState } from "react";
-
+import { Box } from "@mui/material";
+import { Grid2 } from "@mui/material";
 
 function ProductList({ pathname }) {
   const [products, setProducts] = useState([]);
@@ -12,17 +13,17 @@ function ProductList({ pathname }) {
   }, [pathname]);
 
   return (
-    <ul>
+    <Grid2 container spacing={2}>
       {products?.length > 0 ? (
         products.map((product) => (
-          <li key={`products_${product.id}`}>
+          <Grid2 item xs={12} sm={6} md={4} key={`products_${product.id}`}>
             <ProductItemSmall product={product} />
-          </li>
+          </Grid2>
         ))
       ) : (
         <h3> Kunde inte hämta inlägg </h3>
       )}
-    </ul>
+    </Grid2>
   );
 }
 
