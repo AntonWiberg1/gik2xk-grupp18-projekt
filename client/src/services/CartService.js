@@ -52,6 +52,27 @@ export async function addOne(productId) {
     }
 }
 
+export async function removeOne(productId) {
+    const userId = 3;
+    const amount = 1;
+    try {
+        const response = await axios.post(`/carts/removeProduct/`, {
+            userId,
+            productId,
+            amount
+        });
+
+        if (response.status === 200) return response.data;
+        else {
+            console.log(response);
+            return null;
+        }
+    }
+    catch (e) {
+        e?.response ? console.log(e.response.data) : console.log(e);
+    }
+}
+
 export async function markAsPayed(id) {
     try {
         const response = await axios.put(`/carts`, {
