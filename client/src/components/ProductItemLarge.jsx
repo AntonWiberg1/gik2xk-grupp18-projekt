@@ -23,7 +23,7 @@ function ProductItemLarge({ product }) {
                     <ul>
                         {reviews.map((rating) => (
                             <li key={rating.id}>
-                                Rating: {rating.rating}, Review: {rating.review}
+                                Rating: {rating.rating}
                             </li>
                         ))}
                     </ul>
