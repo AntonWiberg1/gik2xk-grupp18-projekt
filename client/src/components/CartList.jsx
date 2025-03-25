@@ -27,6 +27,11 @@ function CartList() {
     );
   }
 
+  // Jag får inte använda refresCart här av nån jävla anledning. Fick bli såhär istället
+  const handlePay = async () => {
+    const updatedCart = await markAsPayed(cart.id);
+    setCart(updatedCart);
+  };
   return (
     <Box sx={{ maxWidth: 700, margin: "auto", mt: 4 }}>
       <Paper elevation={3}>
@@ -39,7 +44,7 @@ function CartList() {
               {index < cart.products.length - 1 && <Divider />}
             </div>
           ))}
-          <ListItemButton onClick={() => markAsPayed(cart.id)}>
+          <ListItemButton onClick={handlePay}>
             <ListItemIcon>
               <ShoppingBagIcon />
             </ListItemIcon>
