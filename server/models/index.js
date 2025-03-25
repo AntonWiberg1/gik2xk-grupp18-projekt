@@ -51,7 +51,8 @@ db.rating.belongsTo(db.product, { foreignKey: 'product_id' });
 db.product.hasMany(db.rating, {
   foreignKey: 'product_id',
   allowNull: false,
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE',
 });
 
 /*db.ratings.belongsTo(db.user);

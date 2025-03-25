@@ -13,7 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       product_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'products',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     },
     { underscored: true }
