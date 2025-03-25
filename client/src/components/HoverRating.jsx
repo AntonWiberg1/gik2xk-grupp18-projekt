@@ -20,9 +20,20 @@ function getLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
 
-export default function HoverRating() {
-  const [value, setValue] = React.useState(2);
+export default function HoverRating({ ratings }) {
+  const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
+
+  // Calculate average rating whenever ratings prop changes
+  React.useEffect(() => {
+    if (ratings && ratings.length > 0) {
+      const sum = ratings.reduce((total, rating) => total + rating.rating, 0);
+      const average = sum / ratings.length;
+      setValue(average);
+    } else {
+      setValue(0); // No ratings yet
+    }
+  }, [ratings]);
 
   return (
     <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
@@ -31,16 +42,13 @@ export default function HoverRating() {
         value={value}
         precision={0.5}
         getLabelText={getLabelText}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
+        readOnly // Make it read-only since this is just for display
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
       {value !== null && (
-        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+        <Box sx={{ ml: 2 }}>
+          {labels[hover !== -1 ? hover : value]} ({ratings?.length || 0} reviews)
+        </Box>
       )}
     </Box>
   );
