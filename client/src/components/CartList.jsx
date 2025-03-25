@@ -1,55 +1,36 @@
-import CartRowItem from './CartRowItem';
-import ProductItemSmall from './ProductItemSmall';
+import ProductItemSmall from "./ProductItemSmall";
+import { getAll } from "../services/CartService";
+import { getOne } from "../services/CartService";
+import { useEffect, useState } from "react";
+import CartRowItem from "./CartRowItem";
 
 function CartList() {
-    const carts = [
-        {
-            "id": 12,
-            "payed": false,
-            "user_id": 1,
-            "products": [
-                {
-                    "id": 1,
-                    "title": "Laptop",
-                    "description": "A high-performance laptop",
-                    "price": 1200.99,
-                    "imageUrl": "laptop.jpg",
-                    "amount": 112
-                },
-                {
-                    "id": 2,
-                    "title": "Headphones",
-                    "description": "Noise-cancelling headphones",
-                    "price": 199.99,
-                    "imageUrl": "headphones.jpg",
-                    "amount": 2
-                }
-            ]
-        }
-    ];
+  const [cart, setCart] = useState(null);
 
-    return (
-        <>
-        <ul >
-            {carts?.length > 0 ? (
-                carts.map(cart => (
-                    <li key={`carts_${cart.id}`}>
-                        <h3>Cart ID: {cart.id}</h3>
-                        <ul>
-                            {cart.products.map(product => (
-                                <li key={`product_${product.id}`}>
-                                    <CartRowItem product={product} />
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
-                ))
-            ) : (
-                <h3>Kunde inte hämta korg</h3>
-            )}
-        </ul>
-        </>
-    );
+  useEffect(() => {
+    getOne(3).then((cart) => {
+      if (cart) setCart(cart);
+    });
+  }, []);
+
+  return (
+    <ul>
+      {cart ? (
+        <li key={`cart_${cart.id}`}>
+          <h3>Cart ID: {cart.id}</h3>
+          <ul>
+            {cart.products?.map((product) => (
+              <li key={`product_${product.id}`}>
+                <CartRowItem product={product} />
+              </li>
+            ))}
+          </ul>
+        </li>
+      ) : (
+        <h3>Kunde inte hämta korg</h3>
+      )}
+    </ul>
+  );
 }
 
 export default CartList;
