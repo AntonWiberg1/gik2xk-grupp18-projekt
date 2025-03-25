@@ -1,58 +1,48 @@
 import { useState } from "react";
 import { Box, Button, TextField, Rating } from "@mui/material";
+import { addRating } from "../services/productService";
 
 function ReviewForm({ productId, onReviewSubmit }) {
     const [rating, setRating] = useState(0);
-    const [review, setReview] = useState("");
+    const [review, setReview] = useState(""); // If backend doesn't store reviews, this is optional
 
     const handleSubmit = async () => {
-        if (!rating || !review.trim()) {
-            alert("Please provide both a rating and a review.");
+        if (!rating) {
+            alert("Please provide a rating.");
             return;
         }
 
-        const newReview = {
-            id: Date.now(), // Temporary unique ID (replace with backend ID)
-            rating,
-            review,
-        };
+        const newReview = { rating }; // Sending only what the backend expects
+
+        console.log("Submitting rating:", newReview); // Debugging log
 
         try {
-            await fetch("/api/reviews", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ productId, ...newReview }),
-            });
+            const savedReview = await addRating(productId, newReview);
+            console.log("API Response:", savedReview); // Debugging log
 
-            onReviewSubmit(newReview);
-            setRating(0);
-            setReview("");
+            if (savedReview) {
+                onReviewSubmit(savedReview);
+                setRating(0);
+                setReview(""); // Reset review if it's part of UI
+            } else {
+                console.error("Failed to save review.");
+            }
         } catch (error) {
-            console.error("Error submitting review", error);
+            console.error("Error submitting review:", error);
         }
     };
 
     return (
         <Box>
             <div>
-                Add rating:  
-                {/* This Rating component is for user input */}
+                Add rating:
                 <Rating 
                     value={rating} 
                     precision={0.5} 
                     onChange={(e, newValue) => setRating(newValue)} 
                 />
             </div>
-            <div>
-                Review:  
-                <TextField 
-                    value={review} 
-                    onChange={(e) => setReview(e.target.value)} 
-                    multiline 
-                    rows={3} 
-                    fullWidth 
-                />
-            </div>
+           
             <Button onClick={handleSubmit} variant="contained">Lämna recension</Button>
         </Box>
     );

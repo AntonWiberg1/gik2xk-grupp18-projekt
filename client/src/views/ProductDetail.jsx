@@ -1,7 +1,6 @@
 import { useParams, useLocation } from "react-router-dom";
 import ProductItemLarge from "../components/ProductItemLarge";
 import { Button } from "@mui/material";
-import ReviewForm from "../components/ReviewForm";
 import Review from "../components/Review";
 import { useEffect, useState } from "react";
 import { getOne } from "../services/ProductService";
