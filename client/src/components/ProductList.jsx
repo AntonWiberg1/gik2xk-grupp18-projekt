@@ -1,8 +1,7 @@
 import ProductItemSmall from "./ProductItemSmall";
 import { getAll } from "../services/ProductService";
 import { useEffect, useState } from "react";
-import { Box } from '@mui/material';
-import ProductItemSmall from './ProductItemSmall';
+import { Box } from "@mui/material";
 
 function ProductList({ pathname }) {
   const [products, setProducts] = useState([]);
@@ -25,7 +24,7 @@ function ProductList({ pathname }) {
       )}
     </ul>
   );
-        return (
+  /*         return (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
             <ul >
                 {products?.length > 0 ? 
@@ -40,7 +39,7 @@ function ProductList({ pathname }) {
                 
             </ul>
             </Box>
-        );
+        ); */
 }
 
 export default ProductList;

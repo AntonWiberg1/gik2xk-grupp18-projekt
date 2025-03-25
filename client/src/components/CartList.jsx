@@ -2,8 +2,7 @@ import ProductItemSmall from "./ProductItemSmall";
 import { getAll } from "../services/CartService";
 import { getOne } from "../services/CartService";
 import { useEffect, useState } from "react";
-import CartRowItem from './CartRowItem';
-import ProductItemSmall from './ProductItemSmall';
+import CartRowItem from "./CartRowItem";
 
 function CartList() {
   const [cart, setCart] = useState(null);
@@ -22,7 +21,7 @@ function CartList() {
           <ul>
             {cart.products?.map((product) => (
               <li key={`product_${product.id}`}>
-                <ProductItemSmall product={product} />
+                <CartRowItem product={product} />
               </li>
             ))}
           </ul>
@@ -32,28 +31,6 @@ function CartList() {
       )}
     </ul>
   );
-    return (
-        <>
-        <ul >
-            {carts?.length > 0 ? (
-                carts.map(cart => (
-                    <li key={`carts_${cart.id}`}>
-                        <h3>Cart ID: {cart.id}</h3>
-                        <ul>
-                            {cart.products.map(product => (
-                                <li key={`product_${product.id}`}>
-                                    <CartRowItem product={product} />
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
-                ))
-            ) : (
-                <h3>Kunde inte hämta korg</h3>
-            )}
-        </ul>
-        </>
-    );
 }
 
 export default CartList;
