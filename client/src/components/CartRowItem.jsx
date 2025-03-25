@@ -4,7 +4,17 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 // product här är inte en product utan det är en cartRow eftersom att vi kan komma åt product.amount
-function CartRowItem({ product }) {
+function CartRowItem({ product, onCartChange }) {
+  const handleAdd = async () => {
+    await addOne(product.id);
+    onCartChange();
+  };
+
+  const handleRemove = async () => {
+    await removeOne(product.id);
+    onCartChange();
+  };
+
   return (
     <>
       <Paper elevation={1} sx={{ p: 0.5, mb: 1, mr: 1 }}>
@@ -17,10 +27,10 @@ function CartRowItem({ product }) {
             </Typography>
           </Box>
 
-          <Button onClick={() => addOne(product.id)}>
+          <Button onClick={handleAdd}>
             <AddCircleIcon></AddCircleIcon>
           </Button>
-          <Button onClick={() => removeOne(product.id)}>
+          <Button onClick={handleRemove}>
             <RemoveCircleIcon></RemoveCircleIcon>
           </Button>
         </Box>

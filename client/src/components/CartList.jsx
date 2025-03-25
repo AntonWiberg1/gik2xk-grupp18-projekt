@@ -9,10 +9,14 @@ import { markAsPayed } from "../services/CartService";
 function CartList() {
   const [cart, setCart] = useState();
 
-  useEffect(() => {
+  const refreshCart = () => {
     getOne(3).then((cart) => {
       if (cart) setCart(cart);
     });
+  };
+
+  useEffect(() => {
+    refreshCart();
   }, []);
 
   if (!cart) {
@@ -30,7 +34,7 @@ function CartList() {
           {cart.products?.map((product, index) => (
             <div key={`product_${product.id}`}>
               <ListItem>
-                <CartRowItem product={product} />
+                <CartRowItem product={product} onCartChange={refreshCart} />
               </ListItem>
               {index < cart.products.length - 1 && <Divider />}
             </div>
