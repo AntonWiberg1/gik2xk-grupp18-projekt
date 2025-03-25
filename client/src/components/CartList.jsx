@@ -22,7 +22,7 @@ function CartList() {
   if (!cart) {
     return (
       <Typography variant="h6" color="error">
-        Kunde inte hämta korg
+        Din varukorg är tom!
       </Typography>
     );
   }
