@@ -46,7 +46,7 @@ function ProductEdit() {
   }
 
   return ( 
-    <Container maxWidth="lg">
+    <Container maxWidth="lg"  sx={{mt: 4 }}>
       <Typography variant="h4" component="h2">
         {product.id ? "Ändra inlägg " : "Lägg till produkt"}
         </Typography>

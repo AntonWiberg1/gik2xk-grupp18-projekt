@@ -13,13 +13,19 @@ function App() {
       <AppBar position="fixed" sx={{zInex: (theme) => theme.zIndex.drawer +1 }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link to="/">Webshop</Link>
+          <Link to="/" style={{
+          color: 'white',
+          textDecoration: 'none'}}>Webshop</Link>
           </Typography>
           <Button color="inherit">
-            <Link to="/products/">Våra produkter</Link>
+            <Link to="/products/" style={{
+          color: 'white',
+          textDecoration: 'none'}}>Våra produkter</Link>
             </Button>
           <Button color="inherit">
-            <Link to="/products/new">Lägg till produkt</Link>
+            <Link to="/products/new" style={{
+          color: 'white',
+          textDecoration: 'none'}}>Lägg till produkt</Link>
             </Button>
             <Button onClick={() => setCartOpen(true)} color="inherit">
             <ShoppingCartIcon />   
