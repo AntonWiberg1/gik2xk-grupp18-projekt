@@ -1,7 +1,12 @@
+import { Box, Paper } from "@mui/material";
+import Presentation from "../components/Presentation";
+
 function Home() {
   return (
     <>
-      <h1>ElGiganormus</h1>
+      <Box>
+      <Presentation/>
+      </Box>
     </>
   );
 }
