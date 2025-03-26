@@ -55,20 +55,6 @@ db.product.hasMany(db.rating, {
   onUpdate: 'CASCADE',
 });
 
-/*db.ratings.belongsTo(db.user);
-db.user.hasMany(db.ratings, {
-  allowNull: false,
-  onDelete: 'CASCADE'
-});
-*/
-
-// Explicitly define the relationships for cartRow
-/* db.cart.hasMany(db.cartRow, { foreignKey: 'cart_id' });
-db.cartRow.belongsTo(db.cart, { foreignKey: 'cart_id' });
-
-db.product.hasMany(db.cartRow, { foreignKey: 'product_id' });
-db.cartRow.belongsTo(db.product, { foreignKey: 'product_id' }); */
-
 db.cart.belongsToMany(db.product, { through: db.cartRow });
 db.product.belongsToMany(db.cart, { through: db.cartRow });
 

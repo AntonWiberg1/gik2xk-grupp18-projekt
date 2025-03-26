@@ -1,3 +1,5 @@
+//skapar en module för varukorgen som innehåller id, betalat och user_id
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'cart',
@@ -20,5 +22,4 @@ module.exports = (sequelize, DataTypes) => {
   );
 };
 
-// ändrat till payed och user_id. user_id kanske behöver en foreign key? 
 

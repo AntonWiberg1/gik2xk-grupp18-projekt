@@ -1,3 +1,5 @@
+//skapar en module för product som innehåller ID, title, description, pris och image_url
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'product',

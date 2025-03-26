@@ -1,3 +1,5 @@
+//skapar en module för rating som innehåller ID, rating, product id
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'rating',
