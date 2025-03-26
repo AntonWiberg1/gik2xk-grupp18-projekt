@@ -3,7 +3,7 @@ import { removeOne, addOne } from "../services/CartService";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
-function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop internally
+function CartRowItem({ product: cartProduct, onCartChange }) {  
   const handleAdd = async () => {
     await addOne(cartProduct.id);
     onCartChange();
@@ -14,7 +14,7 @@ function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop 
     onCartChange();
   };
 
-  // Safely access product details (works with both cart row and full product objects)
+  
   const productData = cartProduct.product || cartProduct;
   const imageUrl = productData.image_url || productData.imageUrl;
 
@@ -22,7 +22,6 @@ function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop 
     <Paper elevation={1} sx={{ p: 0.5, mb: 1, mr: 1 }}>
       <Box display="flex" justifyContent="space-between" alignItems="flex-start">
         <Box display="flex" alignItems="center">
-          {/* Product Image */}
           <Box sx={{ width: 80, height: 80, mr: 2, flexShrink: 0 }}>
             <CardMedia
               component="img"
@@ -40,8 +39,6 @@ function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop 
               }}
             />
           </Box>
-          
-          {/* Product Info */}
           <Box>
             <Typography variant="body1">{productData.title}</Typography>
             <Typography variant="body2" color="text.secondary">
@@ -49,8 +46,6 @@ function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop 
             </Typography>
           </Box>
         </Box>
-
-        {/* Action Buttons */}
         <Box display="flex">
           <Button onClick={handleRemove}>
             <RemoveCircleIcon />

@@ -134,7 +134,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
     <CssBaseline/>
     <RouterProvider router={router} />
     </ThemeProvider>

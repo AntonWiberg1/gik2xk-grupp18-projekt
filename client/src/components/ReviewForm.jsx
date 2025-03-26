@@ -4,7 +4,7 @@ import { addRating } from "../services/ProductService";
 
 function ReviewForm({ productId, onReviewSubmit }) {
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState(""); // If backend doesn't store reviews, this is optional
+  const [review, setReview] = useState(""); 
 
   const handleSubmit = async () => {
     if (!rating) {
@@ -12,18 +12,18 @@ function ReviewForm({ productId, onReviewSubmit }) {
       return;
     }
 
-    const newReview = { rating }; // Sending only what the backend expects
+    const newReview = { rating }; 
 
-    console.log("Submitting rating:", newReview); // Debugging log
+    console.log("Submitting rating:", newReview); 
 
     try {
       const savedReview = await addRating(productId, newReview);
-      console.log("API Response:", savedReview); // Debugging log
+      console.log("API Response:", savedReview); 
 
       if (savedReview) {
         onReviewSubmit(savedReview);
         setRating(0);
-        setReview(""); // Reset review if it's part of UI
+        setReview(""); 
       } else {
         console.error("Failed to save review.");
       }

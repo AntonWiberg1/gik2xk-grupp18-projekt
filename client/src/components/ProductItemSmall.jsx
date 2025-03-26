@@ -41,7 +41,7 @@ function ProductItemSmall({ product }) {
 
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <p>Pris: {product.price} kr</p>
-            {product.amount && <p>Amount: {product.amount}</p>} {/* Display amount if it exists */}
+            {product.amount && <p>Amount: {product.amount}</p>} 
           </Typography>
           <HoverRating ratings={product.ratings} />
         </CardContent>
