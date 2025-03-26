@@ -73,7 +73,7 @@ function ProductEdit() {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      return response.data.imageUrl; // ✅ Return just the filename
+      return response.data.imageUrl; 
     } catch (error) {
       console.error("Upload error:", error);
       setUploadError("Upload failed");
@@ -83,7 +83,7 @@ function ProductEdit() {
 
   async function onSave() {
     try {
-      let imageFilename = product.imageUrl; // Retain existing image if no new file
+      let imageFilename = product.imageUrl; 
 
       if (selectedFile) {
         const uploadedFilename = await uploadFile();
@@ -97,7 +97,7 @@ function ProductEdit() {
         title: product.title,
         description: product.description,
         price: parseFloat(product.price),
-        image_url: imageFilename, // ✅ Store only the filename
+        image_url: imageFilename, 
       };
 
       if (product.id === 0) {

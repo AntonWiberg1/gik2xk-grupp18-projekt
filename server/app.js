@@ -50,7 +50,7 @@ app.use('/images', express.static(path.join(__dirname, 'stockImages')));
 
 app.post("/api/upload", upload.single("image"), (req, res) => {
   if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-  res.json({ imageUrl: req.file.filename }); // ✅ Return filename only
+  res.json({ imageUrl: req.file.filename }); 
 });
 
 
