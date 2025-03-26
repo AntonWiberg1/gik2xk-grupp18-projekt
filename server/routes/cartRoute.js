@@ -3,17 +3,14 @@ const db = require('../models');
 const cartService = require('../services/cartService');
 const validate = require('validate.js');
 
-const constraints = {
-
-};
-
+//get request för att hämta alla varukorgar
 router.get('/', (req, res) => {
   db.cart.findAll().then((result) => {
     res.send(result);
   });
 });
 
-
+//post request för att lägga till en produkt till varukorg
 router.post('/addProduct', async (req, res) => {
   const { userId, productId, amount } = req.body;
 
@@ -24,6 +21,7 @@ router.post('/addProduct', async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
+//put request för att ta bort produkt
 router.put('/removeProduct', async (req, res) => {
   const { userId, productId, amount } = req.body;
 
@@ -34,7 +32,7 @@ router.put('/removeProduct', async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
-
+//post request för att lägga till varukorg
 router.post('/', (req, res) => {
   const cart = req.body;
   db.cart.create(cart).then((result) => {
@@ -42,6 +40,7 @@ router.post('/', (req, res) => {
   });
 });
 
+//put request för att uppdatera varukorg
 router.put('/', (req, res) => {
   const cart = req.body;
   const invalidData = validate(cart, constraints);
@@ -59,6 +58,7 @@ router.put('/', (req, res) => {
   }
 });
 
+//ta bort varukorgen
 router.delete('/', (req, res) => {
   db.cart
     .destroy({

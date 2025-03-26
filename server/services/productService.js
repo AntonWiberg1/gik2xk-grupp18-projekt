@@ -6,7 +6,7 @@ const {
 } = require('../helpers/responseHelper');
 const validate = require('validate.js');
 
-
+//cconstraints för titlen på produkt
 const constraints = {
   title: {
     length: {
@@ -18,7 +18,7 @@ const constraints = {
   }
 };
 
-
+//function för att hämta produkt baserat på ID
 async function getById(id) {
   try {
     const product = await db.product.findOne({
@@ -31,7 +31,7 @@ async function getById(id) {
   }
 }
 
-
+//function för att hämta alla produkter
 async function getAll() {
   try {
     const allProducts = await db.product.findAll({ include: [{ model: db.rating, as: 'ratings' }] });
@@ -42,7 +42,7 @@ async function getAll() {
   }
 }
 
-
+//function för att lägga till rating till produkt baserat på ID
 async function addRating(id, rating) {
   if (!id) {
     return createResponseError(422, 'Id är obligatoriskt');
@@ -56,7 +56,7 @@ async function addRating(id, rating) {
   }
 }
 
-
+//function för att skapa produkt
 async function create(product) {
   const invalidData = validate(product, constraints);
   if (invalidData) {
@@ -70,7 +70,7 @@ async function create(product) {
   }
 }
 
-
+//function för att uppdatera produkt baserat på ID
 async function update(product, id) {
   const invalidData = validate(product, constraints);
   if (!id) {
@@ -94,7 +94,7 @@ async function update(product, id) {
   }
 }
 
-
+//function för att radera produkt baserat på ID
 async function destroy(id) {
   if (!id) {
     return createResponseError(422, 'Id är obligatoriskt');
@@ -109,7 +109,7 @@ async function destroy(id) {
   }
 }
 
-
+//formatterar vår product för att få med samtlig relevant information på rätt format
 function _formatProduct(product) {
   const cleanProduct = {
     id: product.id,

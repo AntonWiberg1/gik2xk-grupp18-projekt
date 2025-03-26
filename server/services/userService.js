@@ -2,10 +2,9 @@ const db = require('../models');
 const {
   createResponseSuccess,
   createResponseError,
-  createResponseMessage
 } = require('../helpers/responseHelper');
 
-
+//function för att hämta en varukorg baserat på UserID
 async function getCartByUserId(id){
   try {
       const cart = await db.cart.findOne({
@@ -20,7 +19,7 @@ async function getCartByUserId(id){
       if (!cart) {
         return createResponseError(404, "Ingen varukorg hittades");
       }
-
+      //formatterar vår varukorg för att få med samtlig relevant information på rätt format
       const formattedCart = {
         id: cart.id,
         payed: cart.payed,
