@@ -26,7 +26,7 @@ function ProductItemSmall({ product }) {
           height="140"
           image={imageUrl}
           onError={(e) => {
-            console.error("Image failed to load:", e.target.src);
+            console.error("Kunde inte ladda bilden:", e.target.src);
             e.target.src = "http://localhost:5000/images/placeholder.jpg";
           }}
           sx={{

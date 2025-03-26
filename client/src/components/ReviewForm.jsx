@@ -10,13 +10,13 @@ function ReviewForm({ productId, onReviewSubmit }) {
 
   const handleSubmit = async () => {
     if (!rating) {
-      alert("Please provide a rating.");
+      alert("Var god ange ett betyg.");
       return;
     }
 
     const newReview = { rating }; 
 
-    console.log("Submitting rating:", newReview); 
+    console.log("skapar betyg:", newReview); 
 
     try {
       const savedReview = await addRating(productId, newReview);
@@ -27,10 +27,10 @@ function ReviewForm({ productId, onReviewSubmit }) {
         setRating(0);
         setReview(""); 
       } else {
-        console.error("Failed to save review.");
+        console.error("Kunde inte spara recensionen.");
       }
     } catch (error) {
-      console.error("Error submitting review:", error);
+      console.error("Error vid skapande av recension:", error);
     }
   };
 
