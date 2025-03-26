@@ -24,7 +24,7 @@ function ProductItemSmall({ product }) {
           image={imageUrl}
           onError={(e) => {
             console.error("Image failed to load:", e.target.src);
-            e.target.src = "https://via.placeholder.com/250x140?text=Image+Not+Found";
+            e.target.src = "http://localhost:5000/images/placeholder.jpg";
           }}
           sx={{
             objectFit: "contain",

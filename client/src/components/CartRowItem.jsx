@@ -36,7 +36,7 @@ function CartRowItem({ product: cartProduct, onCartChange }) {  // Renamed prop 
                 borderRadius: 1
               }}
               onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/80?text=Image+Not+Found';
+                e.target.src = 'http://localhost:5000/images/placeholder.jpg';
               }}
             />
           </Box>
