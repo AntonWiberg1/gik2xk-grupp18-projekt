@@ -6,6 +6,7 @@ const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
 
+//använder oss utav multer för att hantera och ladda upp bilder till vår databas
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, 'stockImages');
@@ -47,7 +48,7 @@ app.use('/carts', require('./routes/cartRoute'));
 app.use('/images', express.static(path.join(__dirname, 'stockImages')));
 
 
-
+//post request för att ladda up bilder med hjälp av multer
 app.post("/api/upload", upload.single("image"), (req, res) => {
   if (!req.file) return res.status(400).json({ error: "No file uploaded" });
   res.json({ imageUrl: req.file.filename }); 
