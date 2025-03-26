@@ -1,13 +1,18 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Grid2 } from "@mui/material";
 import Presentation from "../components/Presentation";
+import Review from "../components/Review";
 
 function Home() {
   return (
-    <>
-      <Box>
+    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+      <Grid2 item xs={12} sm={6} md={12}>
       <Presentation/>
-      </Box>
-    </>
+      </Grid2>
+      <Grid2 item xs={12} sm={6} md={6}>
+      <Review/>
+      </Grid2>
+      
+    </Box>
   );
 }
 
