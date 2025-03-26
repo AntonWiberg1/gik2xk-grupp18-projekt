@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Box, Button, Typography, CardMedia } from "@mui/material"; // Added CardMedia
+import { Box, Button, Typography, CardMedia } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";

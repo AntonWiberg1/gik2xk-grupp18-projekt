@@ -37,8 +37,8 @@ function App() {
         sx={{
           flexGrow: 1,
           p: 3,
-          pt: '64px', // Default AppBar height
-          minHeight: 'calc(100vh - 64px)' // Full viewport minus AppBar
+          pt: '64px', 
+          minHeight: 'calc(100vh - 64px)' 
         }}
       >
       <Outlet />

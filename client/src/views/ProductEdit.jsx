@@ -56,7 +56,6 @@ function ProductEdit() {
 
     setSelectedFile(file);
 
-    // Show preview
     const reader = new FileReader();
     reader.onloadend = () => setPreviewUrl(reader.result);
     reader.readAsDataURL(file);
