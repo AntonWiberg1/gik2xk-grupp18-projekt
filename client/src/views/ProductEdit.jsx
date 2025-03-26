@@ -9,6 +9,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
 
+//VisuallyHiddenInput stylar vid knappen för vår filuppladdning av bilder
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -21,6 +22,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
+// function för att editera en produkt
 function ProductEdit() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ function ProductEdit() {
   const [previewUrl, setPreviewUrl] = useState("");
   const [uploadError, setUploadError] = useState("");
 
+  //använder en previewbild av produkten när den är vald
   useEffect(() => {
     if (id) {
       getOne(id).then((product) => {
@@ -45,22 +48,23 @@ function ProductEdit() {
     }
   }, [id]);
 
+  //function vid förändring
   function onChange(e) {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   }
 
+  //hantera filändring
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
     setSelectedFile(file);
-
     const reader = new FileReader();
     reader.onloadend = () => setPreviewUrl(reader.result);
     reader.readAsDataURL(file);
   };
 
+  //ladda upp fil (bild) till skapad produkt
   const uploadFile = async () => {
     if (!selectedFile) return null;
 
@@ -79,7 +83,8 @@ function ProductEdit() {
       return null;
     }
   };
-
+  
+  //sparar bilden till vår databas
   async function onSave() {
     try {
       let imageFilename = product.imageUrl; 
@@ -112,10 +117,6 @@ function ProductEdit() {
     }
   }
 
-  function onDelete() {
-    remove(product.id).then(() => navigate("/", { replace: true }));
-  }
-
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Typography variant="h4" component="h2">
@@ -124,13 +125,11 @@ function ProductEdit() {
 
       <Box mt={4}>
         <form>
-          {/* Title */}
+
           <TextField fullWidth margin="normal" onChange={onChange} value={product.title} name="title" label="Titel" required />
 
-          {/* Description */}
           <TextField fullWidth margin="normal" onChange={onChange} value={product.description} multiline minRows={5} name="description" label="Beskrivning" />
 
-          {/* Image Upload */}
           <Box mt={2}>
             <Typography variant="subtitle1">Produktbild</Typography>
 
@@ -146,17 +145,14 @@ function ProductEdit() {
             </Button>
 
             {uploadError && <Typography color="error" sx={{ mt: 1 }}>{uploadError}</Typography>}
+
           </Box>
 
-          {/* Price */}
           <TextField fullWidth margin="normal" label="Pris" name="price" type="number" value={product.price} onChange={onChange} />
 
-          {/* Action Buttons */}
           <Box display="flex" mt={4}>
             <Box flexGrow={1}>
               <Button startIcon={<ChevronLeftIcon />} sx={{ mr: 1 }} variant="contained" onClick={() => navigate(-1)}>Tillbaka</Button>
-
-              {id && <Button startIcon={<DeleteIcon />} onClick={onDelete} variant="contained" color="error">Ta bort</Button>}
             </Box>
 
             <Button startIcon={<SaveIcon />} onClick={onSave} variant="contained" color="success">
