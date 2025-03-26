@@ -1,16 +1,11 @@
-import ProductList from "../components/ProductList";
-import CartList from "../components/CartList";
-import { Grid2 } from "@mui/material";
+import { Link } from "@mui/material";
+import Button from "@mui/material/Button";
 
 function Home() {
   return (
     <>
-    <h1>ElGiganormus</h1>
-      <Grid2 container spacing={2} sx={{ display: "flex", pt: "80px" }}>
-        <Grid2 item xs={12} sm={6}>
-          <ProductList />
-        </Grid2>
-      </Grid2>
+      <h1>ElGiganormus</h1>
+
     </>
   );
 }

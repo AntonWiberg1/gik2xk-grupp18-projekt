@@ -12,20 +12,20 @@ function App() {
      <CssBaseline />
       <AppBar position="fixed" sx={{zInex: (theme) => theme.zIndex.drawer +1 }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>
           <Link to="/" style={{
           color: 'white',
-          textDecoration: 'none'}}>Webshop</Link>
+          textDecoration: 'none'}}><span style={{color: 'grey'}}>El</span>Giganormus</Link>
           </Typography>
           <Button color="inherit">
             <Link to="/products/" style={{
           color: 'white',
-          textDecoration: 'none'}}>Våra produkter</Link>
+          }}>Våra produkter</Link>
             </Button>
           <Button color="inherit">
             <Link to="/products/new" style={{
           color: 'white',
-          textDecoration: 'none'}}>Lägg till produkt</Link>
+          }}>Lägg till produkt</Link>
             </Button>
             <Button onClick={() => setCartOpen(true)} color="inherit">
             <ShoppingCartIcon />   
