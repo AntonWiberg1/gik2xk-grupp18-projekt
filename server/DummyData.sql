@@ -4,9 +4,9 @@ INSERT INTO `users` (email, password, first_name, last_name, created_at, updated
 ('user3@example.com', 'password123', 'Charlie', 'Clark', NOW(), NOW());
 
 INSERT INTO `products` (title, description, price, image_url, created_at, updated_at) VALUES
-('Laptop', 'A high-performance laptop', 1200.99, 'laptop.jpg', NOW(), NOW()),
-('Headphones', 'Noise-cancelling headphones', 199.99, 'headphones.jpg', NOW(), NOW()),
-('Smartphone', 'Latest model smartphone', 799.99, 'smartphone.jpg', NOW(), NOW());
+('Laptop', 'A high-performance laptop', 1200.99, 'Computer.png', NOW(), NOW()),
+('Headphones', 'Noise-cancelling headphones', 199.99, 'headset.png', NOW(), NOW()),
+('Smartphone', 'Latest model smartphone', 799.99, 'iphone.png', NOW(), NOW());
 
 INSERT INTO `carts` (id, user_id, payed, created_at, updated_at) VALUES
 (12, 1, FALSE, NOW(), NOW()),
@@ -26,7 +26,6 @@ INSERT INTO `ratings` (product_id, rating, created_at, updated_at) VALUES
 (3, 4.8, NOW(), NOW()),
 (1, 3.9, NOW(), NOW()),
 (2, 4.2, NOW(), NOW());
-
 
 
 SELECT * FROM carts;
