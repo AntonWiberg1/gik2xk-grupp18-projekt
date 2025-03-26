@@ -53,7 +53,7 @@ function ProductDetail() {
               borderRadius: 1
             }}
             onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+              e.target.src = 'http://localhost:5000/images/placeholder.jpg';
             }}
           />
           <Typography variant="h4" gutterBottom>{product.title}</Typography>
