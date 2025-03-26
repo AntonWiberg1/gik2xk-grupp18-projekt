@@ -2,6 +2,8 @@ import { Box, Paper, Grid2 } from "@mui/material";
 import Presentation from "../components/Presentation";
 import Review from "../components/Review";
 
+// View för startsidan. Innehåller komponent för presentation och fiktiv review. Grid från MUI. 
+
 function Home() {
   return (
     <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>

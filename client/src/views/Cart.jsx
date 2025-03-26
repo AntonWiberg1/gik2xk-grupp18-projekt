@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
@@ -9,10 +8,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import MailIcon from "@mui/icons-material/Mail";
 import CartList from "../components/CartList";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { markAsPayed } from "../services/CartService";
+
+// View för att visa varukorgen, Använder drawer från MUI för en snyggare design och importerar cartlist-komponenten
 
 // Styr om drawer ska vara öppen eller stängd
 export default function Cart({ cartOpen, setCartOpen }) {

@@ -6,6 +6,8 @@ import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
 
+// Komponent som visas när man klickar in på en specifik produkt. Här finns möjlighet att lägga till review eller ta bort produkt. 
+
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
