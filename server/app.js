@@ -20,9 +20,9 @@ const storage = multer.diskStorage({
 const upload = multer({ 
   storage: storage,
   fileFilter: (req, file, cb) => {
-    // Accept images only
+    // accepterar bara bild filer
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-      return cb(new Error('Only image files are allowed!'), false);
+      return cb(new Error('Bara bildfiler tillåtna!'), false);
     }
     cb(null, true);
   }
@@ -50,7 +50,7 @@ app.use('/images', express.static(path.join(__dirname, 'stockImages')));
 
 //post request för att ladda up bilder med hjälp av multer
 app.post("/api/upload", upload.single("image"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+  if (!req.file) return res.status(400).json({ error: "Ingen fil har blivit uppladdad" });
   res.json({ imageUrl: req.file.filename }); 
 });
 

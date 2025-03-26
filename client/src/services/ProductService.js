@@ -79,9 +79,8 @@ export async function remove(id) {
 //tror dock att den ska ligga kvar här
 export async function addRating(product_id, ratingData) {
     try {
-        // Ensure we're sending a clean payload
         const payload = {
-            rating: ratingData.rating,  // Just the numeric value
+            rating: ratingData.rating,
             product_id: product_id
         };
 
@@ -101,8 +100,8 @@ export async function addRating(product_id, ratingData) {
         if (e.response) {
             console.error("Response data:", e.response.data);
             console.error("Response status:", e.response.status);
-            throw new Error(e.response.data.message || "Failed to submit rating");
+            throw new Error(e.response.data.message || "Kunde inte sätta betyg");
         }
-        throw new Error(e.message || "Network error");
+        throw new Error(e.message || "Nätverksfel");
     }
 }

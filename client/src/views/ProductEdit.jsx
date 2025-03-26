@@ -74,8 +74,8 @@ function ProductEdit() {
 
       return response.data.imageUrl; 
     } catch (error) {
-      console.error("Upload error:", error);
-      setUploadError("Upload failed");
+      console.error("Fel vid filuppladdning:", error);
+      setUploadError("Fel vid filuppladdning");
       return null;
     }
   };
@@ -107,8 +107,8 @@ function ProductEdit() {
         navigate(`/products/${product.id}`, { replace: true });
       }
     } catch (error) {
-      console.error('Save error:', error);
-      setUploadError(error.message || "Could not save product");
+      console.error('Fel vid sparande:', error);
+      setUploadError(error.message || "Kunde inte spara produkt");
     }
   }
 
