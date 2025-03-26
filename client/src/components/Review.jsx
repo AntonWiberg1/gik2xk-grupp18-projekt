@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 
+// komponent för en fiktiv recension till startsidan, Importerad från MUI. 
+
 const bull = (
   <Box
     component="span"

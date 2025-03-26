@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { Grid2 } from "@mui/material";
 
+// komponent för att visa samtliga produkter i menyn "Våra produkter"
+
+
 function ProductList({ pathname }) {
   const [products, setProducts] = useState([]);
   useEffect(() => {

@@ -3,6 +3,8 @@ import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 
+// Ratingkomponent importerad från MUI för att ha en dynamisk star-review komponent 
+
 const labels = {
   0.5: 'Useless',
   1: 'Useless+',

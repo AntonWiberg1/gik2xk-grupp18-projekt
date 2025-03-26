@@ -3,6 +3,8 @@ import { removeOne, addOne } from "../services/CartService";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
+// Komponent för att visa en vara i varukorgen inklusive funktioner för att lägga till och ta bort antal 
+
 function CartRowItem({ product: cartProduct, onCartChange }) {  
   const handleAdd = async () => {
     await addOne(cartProduct.id);

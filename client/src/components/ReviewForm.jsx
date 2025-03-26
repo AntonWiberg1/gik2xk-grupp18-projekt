@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Box, Button, TextField, Rating } from "@mui/material";
 import { addRating } from "../services/ProductService";
 
+// komponent för att kunna lägga till rating 
+
 function ReviewForm({ productId, onReviewSubmit }) {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState(""); 

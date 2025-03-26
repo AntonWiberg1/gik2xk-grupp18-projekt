@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
+// Presentation om företaget för startsidan. Välkomstmeddelande. Används i Home.jsx 
 
 function Presentation() {
   const imageUrl =  'http://localhost:5000/images/Elgiganormus.png';
@@ -17,16 +18,14 @@ function Presentation() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-
   }}>
   <Card sx={{ mt: 10, maxWidth: 700, alignItems: "center" }}>
-    
         <CardMedia
           component="img"
           height="200"
           image={imageUrl} 
           onError={(e) => {
-            console.error("Image failed to load:", e.target.src);
+            console.error("Kunde inte ladda in bilden:", e.target.src);
             e.target.src = "http://localhost:5000/images/placeholder.jpg";
           }}
           sx={{
@@ -35,8 +34,8 @@ function Presentation() {
             height: 350,
           }}
         />
+
         <CardContent>
-          
           <Typography gutterBottom variant="h5" component="div">
               <h4>ElGiganormus – din digitala destination för allt inom teknik, gaming och smart living.</h4>
           </Typography>
@@ -46,12 +45,15 @@ function Presentation() {
           </Typography>
         
         </CardContent>
+
         <CardActions>
           <Button size="small" component={Link} to={`/products/`}>
             Produkter
           </Button>
         </CardActions>
+      
       </Card>
+  
   </Box> );
 }
 

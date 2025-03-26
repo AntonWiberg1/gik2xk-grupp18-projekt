@@ -9,11 +9,14 @@ import Typography from "@mui/material/Typography";
 import HoverRating from "./HoverRating";
 import { addOne } from "../services/CartService";
 
+// komponent för att visa en specifik produkt, skickar in product som prop.
+
 function ProductItemSmall({ product }) {
   const imageUrl = product?.imageUrl ? `http://localhost:5000/images/${product.imageUrl}` : "/placeholder-image.png";
   console.log(`Product ID: ${product.id}`);
   console.log(`Image URL: ${imageUrl}`);
   console.log(`Product Data:`, product);
+
   return (
     <>
       <Card sx={{ mb: 3, maxWidth: 250 }}>
@@ -32,19 +35,20 @@ function ProductItemSmall({ product }) {
             height: 140,
           }}
         />
+
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             <Link to={`/products/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
               <h4>{product.title}</h4>
             </Link>
           </Typography>
-
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <p>Pris: {product.price} kr</p>
             {product.amount && <p>Amount: {product.amount}</p>} 
           </Typography>
           <HoverRating ratings={product.ratings} />
         </CardContent>
+
         <CardActions>
           <Button size="small" onClick={() => addOne(product.id)}>
             Lägg i varukorg
@@ -53,6 +57,7 @@ function ProductItemSmall({ product }) {
             Läs mer
           </Button>
         </CardActions>
+      
       </Card>
     </>
   );
