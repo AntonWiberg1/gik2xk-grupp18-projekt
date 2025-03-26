@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Box, Button, Typography, CardMedia } from "@mui/material"; // Added CardMedia
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
@@ -38,54 +38,49 @@ function ProductDetail() {
   }
 
   return (
-    <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2, mt: 3, bgcolor: 'background.paper' }}>
+    <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2, mt: 3, bgcolor: "background.paper" }}>
       {product ? (
         <>
-        <CardMedia
+          <CardMedia
             component="img"
             alt={product.title}
             height="500"
             image={`http://localhost:5000/images/${product.imageUrl}`}
-            sx={{ 
-              objectFit: 'contain',
-              backgroundColor: '#f5f5f5',
+            sx={{
+              objectFit: "contain",
+              backgroundColor: "#f5f5f5",
               mb: 2,
-              borderRadius: 1
+              borderRadius: 1,
             }}
             onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/300x200?text=Image+Not+Found';
+              e.target.src = "https://via.placeholder.com/300x200?text=Image+Not+Found";
             }}
           />
-          <Typography variant="h4" gutterBottom>{product.title}</Typography>
-          <Typography variant="h6" gutterBottom>Pris: {product.price ?? 'Ej angivet'} kr</Typography>
+          <Typography variant="h4" gutterBottom>
+            {product.title}
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            Pris: {product.price ?? "Ej angivet"} kr
+          </Typography>
+          <Typography>{product.description}</Typography>
 
           <HoverRating ratings={reviews} onReviewSubmit={handleNewReview} />
           <ReviewForm productId={product.id} onReviewSubmit={handleNewReview} />
 
           <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 3 }}>
-            
-            <Button
-              onClick={() => navigate(-1)}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={() => navigate(-1)} variant="contained" color="primary">
               Tillbaka
             </Button>
 
-            <Button
-              startIcon={<DeleteIcon />}
-              onClick={onDelete}
-              variant="contained"
-              color="error"
-            >
+            <Button startIcon={<DeleteIcon />} onClick={onDelete} variant="contained" color="error">
               Ta bort
             </Button>
-          
           </Box>
-
         </>
       ) : (
-        <Typography variant="h6" color="error">Produkt ej funnen</Typography>
+        <Typography variant="h6" color="error">
+          Produkt ej funnen
+        </Typography>
       )}
     </Box>
   );
