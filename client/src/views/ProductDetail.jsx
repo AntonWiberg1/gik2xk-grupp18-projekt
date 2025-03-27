@@ -10,6 +10,8 @@ import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
 import { addOne } from "../services/CartService";
 import { update } from "../services/ProductService";
+import Rating from '@mui/material/Rating'; // Import the Rating component
+
 
 // Komponent som visas när man klickar in på en specifik produkt. Här finns möjlighet att lägga till review eller ta bort produkt. 
 
@@ -25,6 +27,7 @@ function ProductDetail() {
         if (product) {
           setProduct(product);
           setReviews(product.ratings || []);
+          
         }
       });
     }
@@ -82,6 +85,29 @@ function ProductDetail() {
           <Typography>{product.description}</Typography>
 
           <HoverRating ratings={reviews} onReviewSubmit={handleNewReview} />
+
+          <Box>
+          {product.ratings && product.ratings.length > 0 ? (
+            product.ratings.map((rating) => (
+              <Box key={rating.id} sx={{ mb: 2 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Rating: {rating.rating}
+                </Typography>
+                <Rating
+                  value={rating.rating} 
+                  precision={0.5} 
+                  readOnly 
+                />
+              </Box>
+            ))
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              Inga recensioner tillgängliga
+            </Typography>
+          )}
+        </Box>
+
+
           <ReviewForm productId={product.id} onReviewSubmit={handleNewReview} />
 
           <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 3 }}>

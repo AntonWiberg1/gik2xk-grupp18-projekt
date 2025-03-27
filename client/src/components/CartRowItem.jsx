@@ -19,6 +19,7 @@ function CartRowItem({ product: cartProduct, onCartChange }) {
   
   const productData = cartProduct.product || cartProduct;
   const imageUrl = productData.image_url || productData.imageUrl;
+  const totalItemPrice = productData.price * productData.amount;
 
   return (
     <Paper elevation={1} sx={{ p: 0.5, mb: 1, mr: 1 }}>
@@ -45,6 +46,9 @@ function CartRowItem({ product: cartProduct, onCartChange }) {
             <Typography variant="body1">{productData.title}</Typography>
             <Typography variant="body2" color="text.secondary">
               {productData.price} kr x {cartProduct.amount || 1}
+            </Typography>
+            <Typography>
+              Totalt:{totalItemPrice }kr
             </Typography>
           </Box>
         </Box>

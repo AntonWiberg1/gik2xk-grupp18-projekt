@@ -32,6 +32,11 @@ function CartList() {
     const updatedCart = await markAsPayed(cart.id);
     setCart(updatedCart);
   };
+
+  const totalPrice = cart.products?.reduce((sum, product) =>{
+    return sum + (product.price * product.amount ||1);
+  }, 0);
+
   return (
     <Box sx={{ maxWidth: 700, margin: "auto", mt: 4 }}>
       <Paper elevation={3}>
@@ -44,6 +49,12 @@ function CartList() {
               {index < cart.products.length - 1 && <Divider />}
             </div>
           ))}
+          <Divider/ >
+          <ListItem>
+            <Typography variant = "h6" sx ={{ml: "auto", fontWeight: "bold"}}>
+              Totalt:{totalPrice}kr
+            </Typography>
+          </ListItem>
           <ListItemButton onClick={handlePay}>
             <ListItemIcon>
               <ShoppingBagIcon />
