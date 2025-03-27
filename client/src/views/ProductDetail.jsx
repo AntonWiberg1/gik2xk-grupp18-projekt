@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Box, Button, Typography, CardMedia } from "@mui/material";
+import { Box, Button, Typography, CardMedia, Collapse } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import EditIcon from "@mui/icons-material/Edit";
@@ -13,12 +13,11 @@ import { update } from "../services/ProductService";
 import Rating from '@mui/material/Rating'; // Import the Rating component
 
 
-// Komponent som visas när man klickar in på en specifik produkt. Här finns möjlighet att lägga till review eller ta bort produkt. 
-
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [open, setOpen] = useState(false);  // State to manage the collapsible section visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +26,6 @@ function ProductDetail() {
         if (product) {
           setProduct(product);
           setReviews(product.ratings || []);
-          
         }
       });
     }
@@ -56,6 +54,10 @@ function ProductDetail() {
       console.error(error);
     }
   }
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   return (
     <Box sx={{ boxShadow: 3, p: 3, borderRadius: 2, mt: 3, bgcolor: "background.paper" }}>
@@ -87,38 +89,41 @@ function ProductDetail() {
           <HoverRating ratings={reviews} onReviewSubmit={handleNewReview} />
 
           <Box>
-          {product.ratings && product.ratings.length > 0 ? (
-            product.ratings.map((rating) => (
-              <Box key={rating.id} sx={{ mb: 2 }}>
+            <Button onClick={handleToggle} sx={{ mb: 2 }}>
+              {open ? 'Visa färre recensioner' : 'Visa alla recensioner'}
+            </Button>
+            <Collapse in={open} unmountOnExit>
+              {product.ratings && product.ratings.length > 0 ? (
+                product.ratings.map((rating) => (
+                  <Box key={rating.id} sx={{ mb: 2 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Rating: {rating.rating}
+                    </Typography>
+                    <Rating
+                      value={rating.rating} 
+                      precision={0.5} 
+                      readOnly 
+                    />
+                  </Box>
+                ))
+              ) : (
                 <Typography variant="body2" color="text.secondary">
-                  Rating: {rating.rating}
+                  Inga recensioner tillgängliga
                 </Typography>
-                <Rating
-                  value={rating.rating} 
-                  precision={0.5} 
-                  readOnly 
-                />
-              </Box>
-            ))
-          ) : (
-            <Typography variant="body2" color="text.secondary">
-              Inga recensioner tillgängliga
-            </Typography>
-          )}
-        </Box>
-
+              )}
+            </Collapse>
+          </Box>
 
           <ReviewForm productId={product.id} onReviewSubmit={handleNewReview} />
 
           <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 3 }}>
-            
             <Button startIcon={<ChevronLeftIcon />} onClick={() => navigate(-1)} variant="contained" color="primary">
               Tillbaka
             </Button>
 
             <Button startIcon={<AddShoppingCartIcon />} size="small" onClick={() => addOne(product.id)} variant="contained" color="success">
-                        Lägg i varukorg
-                      </Button>
+              Lägg i varukorg
+            </Button>
 
             <Button startIcon={<EditIcon />} onClick={onUpdate} variant="contained" color="primary">
               Ändra
