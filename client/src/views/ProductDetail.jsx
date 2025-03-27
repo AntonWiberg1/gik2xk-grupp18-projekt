@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
+import { addOne } from "../services/CartService";
 
 // Komponent som visas när man klickar in på en specifik produkt. Här finns möjlighet att lägga till review eller ta bort produkt. 
 
@@ -70,9 +71,14 @@ function ProductDetail() {
           <ReviewForm productId={product.id} onReviewSubmit={handleNewReview} />
 
           <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 3 }}>
+            
             <Button onClick={() => navigate(-1)} variant="contained" color="primary">
               Tillbaka
             </Button>
+
+            <Button size="small" onClick={() => addOne(product.id)} variant="contained" color="success">
+                        Lägg i varukorg
+                      </Button>
 
             <Button startIcon={<DeleteIcon />} onClick={onDelete} variant="contained" color="error">
               Ta bort
