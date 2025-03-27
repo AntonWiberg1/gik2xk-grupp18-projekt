@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, Button, TextField, Rating } from "@mui/material";
+import RateReviewIcon from '@mui/icons-material/RateReview';
 import { addRating } from "../services/ProductService";
 
 // komponent för att kunna lägga till rating 
@@ -41,7 +42,7 @@ function ReviewForm({ productId, onReviewSubmit }) {
         <Rating value={rating} precision={0.5} onChange={(e, newValue) => setRating(newValue)} />
       </div>
 
-      <Button onClick={handleSubmit} variant="contained">
+      <Button startIcon={<RateReviewIcon />} onClick={handleSubmit} variant="contained">
         Lämna recension
       </Button>
     </Box>

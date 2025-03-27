@@ -2,6 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Box, Button, Typography, CardMedia } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import EditIcon from "@mui/icons-material/Edit";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
@@ -83,15 +86,15 @@ function ProductDetail() {
 
           <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 3 }}>
             
-            <Button onClick={() => navigate(-1)} variant="contained" color="primary">
+            <Button startIcon={<ChevronLeftIcon />} onClick={() => navigate(-1)} variant="contained" color="primary">
               Tillbaka
             </Button>
 
-            <Button size="small" onClick={() => addOne(product.id)} variant="contained" color="success">
+            <Button startIcon={<AddShoppingCartIcon />} size="small" onClick={() => addOne(product.id)} variant="contained" color="success">
                         Lägg i varukorg
                       </Button>
 
-            <Button startIcon={<DeleteIcon />} onClick={onUpdate} variant="contained" color="error">
+            <Button startIcon={<EditIcon />} onClick={onUpdate} variant="contained" color="primary">
               Ändra
             </Button>
 
