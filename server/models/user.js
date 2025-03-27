@@ -1,3 +1,5 @@
+//skapar en module för users som innehåller id, email och password samt firstname och lastname
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'user',
