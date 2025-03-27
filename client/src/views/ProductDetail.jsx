@@ -6,6 +6,7 @@ import HoverRating from "../components/HoverRating";
 import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
 import { addOne } from "../services/CartService";
+import { update } from "../services/ProductService";
 
 // Komponent som visas när man klickar in på en specifik produkt. Här finns möjlighet att lägga till review eller ta bort produkt. 
 
@@ -36,6 +37,16 @@ function ProductDetail() {
       navigate(-1, { replace: true, state: response });
     } catch (error) {
       alert("Något gick fel vid borttagning");
+      console.error(error);
+    }
+  }
+
+  async function onUpdate() {
+    try {
+      const response = await update(product.id);
+      navigate(`/products/${product.id}/edit`);
+    } catch (error) {
+      alert("Något gick fel vid uppdatering");
       console.error(error);
     }
   }
@@ -79,6 +90,10 @@ function ProductDetail() {
             <Button size="small" onClick={() => addOne(product.id)} variant="contained" color="success">
                         Lägg i varukorg
                       </Button>
+
+            <Button startIcon={<DeleteIcon />} onClick={onUpdate} variant="contained" color="error">
+              Ändra
+            </Button>
 
             <Button startIcon={<DeleteIcon />} onClick={onDelete} variant="contained" color="error">
               Ta bort

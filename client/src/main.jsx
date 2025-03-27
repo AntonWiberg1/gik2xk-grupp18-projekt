@@ -128,6 +128,12 @@ const router = createBrowserRouter([
         path: "/Users/:id/getCart",
         element: <CartList />,
       },
+      {
+        path: "/products/:id/edit",
+        element: <ProductEdit />,
+      },
+      
+
     ],
   },
 ]);
