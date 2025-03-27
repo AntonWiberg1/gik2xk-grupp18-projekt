@@ -10,7 +10,7 @@ import Products from "./views/Products.jsx";
 import Cart from "./views/Cart.jsx";
 import CartList from "./components/CartList.jsx";
 import {createTheme, ThemeProvider } from '@mui/material/styles';
-import { blue, blueGrey, deepPurple, green, grey, orange, purple, red, teal } from '@mui/material/colors';
+import { blue, blueGrey, green, grey, orange, purple, red, teal } from '@mui/material/colors';
 import { CssBaseline } from "@mui/material";
 
 

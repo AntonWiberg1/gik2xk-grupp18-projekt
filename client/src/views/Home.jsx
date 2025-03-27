@@ -1,4 +1,4 @@
-import { Box, Paper, Grid2 } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import Presentation from "../components/Presentation";
 import Review from "../components/Review";
 

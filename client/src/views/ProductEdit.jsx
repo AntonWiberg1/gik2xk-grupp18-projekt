@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { create, getOne, remove, update } from "../services/ProductService";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
