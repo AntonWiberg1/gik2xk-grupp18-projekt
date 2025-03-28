@@ -75,31 +75,19 @@ export async function remove(id) {
     }
 }
 
-//osäker på om den här ska ligga här eller om den kommer ligga i review service, vi får se hur det blir.
-//tror dock att den ska ligga kvar här
-export async function addRating(product_id, ratingData) {
+// måste skicka med rating som ett objekt här
+export async function addRating(product_id, { rating }) {
     try {
-        const payload = {
-            rating: ratingData.rating,
-            product_id: product_id
-        };
-
-        console.log("Sending request to:", `/products/${product_id}/addRating`);
-        console.log("Payload:", payload);
-
-        const response = await axios.post(`/products/${product_id}/addRating`, payload);
+        const response = await axios.post(`/products/${product_id}/addRating`, { product_id, rating });
 
         if (response.status >= 200 && response.status < 300) {
             return response.data;
         } else {
-            console.error("Unexpected API response:", response);
             throw new Error(`API returned status ${response.status}`);
         }
     } catch (e) {
         console.error("Full error from API call:", e);
         if (e.response) {
-            console.error("Response data:", e.response.data);
-            console.error("Response status:", e.response.status);
             throw new Error(e.response.data.message || "Kunde inte sätta betyg");
         }
         throw new Error(e.message || "Nätverksfel");

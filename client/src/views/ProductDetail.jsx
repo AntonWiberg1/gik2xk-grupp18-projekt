@@ -10,14 +10,14 @@ import { getOne, remove } from "../services/ProductService";
 import ReviewForm from "../components/ReviewForm";
 import { addOne } from "../services/CartService";
 import { update } from "../services/ProductService";
-import Rating from '@mui/material/Rating'; // Import the Rating component
+import Rating from '@mui/material/Rating'; 
 
 
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const [open, setOpen] = useState(false);  // State to manage the collapsible section visibility
+  const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,9 +31,12 @@ function ProductDetail() {
     }
   }, [id]);
 
-  const handleNewReview = (newReview) => {
-    setReviews((prev) => [...prev, newReview]);
-  };
+const handleNewReview = (newReview) => {
+  setProduct((prev) => ({
+    ...prev,
+    ratings: [...(prev.ratings || []), newReview],
+  }));
+};
 
   async function onDelete() {
     try {
