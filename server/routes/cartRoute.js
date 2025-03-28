@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
 //put request för att uppdatera varukorg
 router.put('/', (req, res) => {
   const cart = req.body;
-  const invalidData = validate(cart, constraints);
+  const invalidData = validate(cart);
   const id = cart.id;
   if (invalidData || !id) {
     res.status(400).json(invalidData || 'Id är obligatoriskt.');
