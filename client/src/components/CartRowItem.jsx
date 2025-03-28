@@ -6,6 +6,7 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 // Komponent för att visa en vara i varukorgen inklusive funktioner för att lägga till och ta bort antal 
 
 function CartRowItem({ product: cartProduct, onCartChange }) {  
+  
   const handleAdd = async () => {
     await addOne(cartProduct.id);
     onCartChange();
@@ -22,7 +23,7 @@ function CartRowItem({ product: cartProduct, onCartChange }) {
   const totalItemPrice = productData.price * productData.amount;
 
   return (
-    <Paper elevation={1} sx={{ p: 0.5, mb: 1, mr: 1 }}>
+    <Paper elevation={1} sx={{ p: 0.5, mb: 1, width: '100%'}}>
       <Box display="flex" justifyContent="space-between" alignItems="flex-start">
         <Box display="flex" alignItems="center">
           <Box sx={{ width: 80, height: 80, mr: 2, flexShrink: 0 }}>

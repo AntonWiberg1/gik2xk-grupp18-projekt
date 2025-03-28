@@ -19,7 +19,7 @@ function ProductItemSmall({ product }) {
 
   return (
     <>
-      <Card sx={{ mb: 3, maxWidth: 250 }}>
+      <Card sx={{ mb: 3, maxWidth: 250, height: 420 }}>
         <CardMedia
           component="img"
           alt={product.title}
