@@ -30,6 +30,7 @@ export async function getOne(id) {
     }
 }
 
+//hårdkodar userId och amount för testning
 export async function addOne(productId) {
     const userId = 3;
     const amount = 1;
@@ -51,6 +52,7 @@ export async function addOne(productId) {
     }
 }
 
+//hårdkodar userId och amount för testning
 export async function removeOne(productId) {
     const userId = 3;
     const amount = 1;
