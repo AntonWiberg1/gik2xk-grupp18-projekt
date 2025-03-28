@@ -34,8 +34,8 @@ function CartList() {
   };
 
   const totalPrice = cart.products?.reduce((sum, product) =>{
-    return sum + (product.price * product.amount ||1);
-  }, 0);
+    return (sum + (product.price * product.amount ?? 1));
+  }, 0)?.toFixed(2);
 
   return (
     <Box sx={{ maxWidth: 700, margin: "auto", mt: 4 }}>
@@ -52,7 +52,7 @@ function CartList() {
           <Divider/ >
           <ListItem>
             <Typography variant = "h6" sx ={{ml: "auto", fontWeight: "bold"}}>
-              Totalt:{totalPrice}kr
+              Totalt: {totalPrice}kr
             </Typography>
           </ListItem>
           <ListItemButton onClick={handlePay}>
