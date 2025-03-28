@@ -48,7 +48,7 @@ function CartRowItem({ product: cartProduct, onCartChange }) {
               {productData.price} kr x {cartProduct.amount || 1}
             </Typography>
             <Typography>
-              Totalt:{totalItemPrice }kr
+              Totalt:{totalItemPrice.toFixed(2)}kr
             </Typography>
           </Box>
         </Box>
