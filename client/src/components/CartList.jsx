@@ -34,7 +34,7 @@ function CartList() {
   };
 
   const totalPrice = cart.products?.reduce((sum, product) =>{
-    return (sum + (product.price * product.amount ?? 1));
+    return (sum + (product.price * product.amount));
   }, 0)?.toFixed(2);
 
   return (
