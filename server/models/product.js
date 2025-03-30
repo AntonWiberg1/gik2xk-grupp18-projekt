@@ -1,3 +1,5 @@
+//skapar en module för product som innehåller ID, title, description, pris och image_url
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'product',
@@ -19,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false
       },
-      imageUrl: {
+      image_url: {
         type: DataTypes.STRING(255)
       }
     },

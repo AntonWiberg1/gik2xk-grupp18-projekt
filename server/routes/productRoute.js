@@ -3,7 +3,7 @@ const productService = require('../services/productService');
 
 //__________ Alla routes fungerar som dom ska i postman ____//
 
-// OK i postman
+// post request för att lägga till rating baserat på ID
 router.post('/:id/addRating', (req, res) => {
   const rating = req.body;
   const id = req.params.id;
@@ -14,7 +14,7 @@ router.post('/:id/addRating', (req, res) => {
 });
 
 
-// OK
+// get request för att hämta produkt baserat på ID
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -24,14 +24,14 @@ router.get('/:id', (req, res) => {
 });
 
 
-// OK
+// get request för att hämta alla produkter
 router.get('/', (req, res) => {
   productService.getAll().then((result) => {
     res.status(result.status).json(result.data);
   });
 });
 
-// OK
+// post request för att lägga till produkt
 router.post('/', (req, res) => {
   const product = req.body;
   productService.create(product).then((result) => {
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 });
 
 
-// OK
+// put request för att editera produkt
 router.put('/', (req, res) => {
   const product = req.body;
   const id = product.id;
@@ -50,7 +50,7 @@ router.put('/', (req, res) => {
   });
 });
 
-//OK
+//ta bort produkt baserat på ID
 router.delete('/', (req, res) => {
   const id = req.body.id;
   productService.destroy(id).then((result) => {

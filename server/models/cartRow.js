@@ -1,3 +1,5 @@
+//skapar en module  för cartRow som innehåller id och amount
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'cartRow',

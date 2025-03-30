@@ -1,24 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import PostEdit from './views/PostEdit.jsx';
-import Posts from './views/Posts.jsx';
-import PostDetail from './views/PostDetail.jsx';
-import Home from './views/Home.jsx';
-import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { CssBaseline } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {
-  blueGrey,
-  deepPurple,
-  green,
-  grey,
-  orange,
-  purple,
-  red,
-  teal
-} from '@mui/material/colors';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductEdit from "./views/ProductEdit.jsx";
+import ProductDetail from "./views/ProductDetail.jsx";
+import Home from "./views/Home.jsx";
+import Products from "./views/Products.jsx";
+import Cart from "./views/Cart.jsx";
+import CartList from "./components/CartList.jsx";
+import {createTheme, ThemeProvider } from '@mui/material/styles';
+import { blue, blueGrey, green, grey, orange, purple, red, teal } from '@mui/material/colors';
+import { CssBaseline } from "@mui/material";
+
 
 const theme = createTheme({
   palette: {
@@ -28,7 +22,7 @@ const theme = createTheme({
       paper: grey[50]
     },
     primary: {
-      main: deepPurple[300]
+      main: blue[700]
     },
     secondary: {
       main: blueGrey[500]
@@ -43,7 +37,7 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Ubuntu", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
-      fontFamily: 'Satisfy',
+      fontFamily: 'Orbitron',
       fontSize: '3.7rem'
     },
     h2: {
@@ -56,19 +50,19 @@ const theme = createTheme({
     },
     h4: {
       fontSize: '1.3rem',
-      color: 'rgb(106, 77, 123)'
+      color: blueGrey[800]
     },
     body1: { color: blueGrey[700] },
     body2: { color: blueGrey[800] }
   }
 });
-//Exempel alternativ mörkt tema. Byt ut till <ThemeProvider theme={darkTheme}> nedan för att testa.
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#18041A',
-      paper: '#351338'
+      default: 'black',
+      paper: 'black'
     },
     primary: {
       main: orange['A400']
@@ -98,7 +92,7 @@ const darkTheme = createTheme({
     },
     h4: {
       fontSize: '1.3rem',
-      color: 'rgb(106,77,123)'
+      color: 'white'
     },
     body1: { color: grey[50] },
     body2: { color: grey[200] }
@@ -107,42 +101,48 @@ const darkTheme = createTheme({
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/posts/:id/edit',
-        element: <PostEdit />
+        path: "/products/new",
+        element: <ProductEdit />,
       },
       {
-        path: '/posts/:id',
-        element: <PostDetail />
+        path: "/products/:id",
+        element: <ProductDetail />,
       },
       {
-        path: '/posts/new',
-        element: <PostEdit />
+        path: "/products/",
+        element: <Products />,
       },
       {
-        path: '/users/:id/posts',
-        element: <Posts />
+        path: "/cart/",
+        element: <Cart />,
       },
       {
-        path: '/tags/:tag/posts',
-        element: <Posts />
-      }
-    ]
-  }
+        path: "/Users/:id/getCart",
+        element: <CartList />,
+      },
+      {
+        path: "/products/:id/edit",
+        element: <ProductEdit />,
+      },
+      
+
+    ],
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
+    <CssBaseline/>
+    <RouterProvider router={router} />
     </ThemeProvider>
-  </React.StrictMode>
+  </StrictMode>
 );

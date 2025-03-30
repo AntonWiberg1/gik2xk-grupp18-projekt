@@ -1,3 +1,5 @@
+//skapar en module för rating som innehåller ID, rating, product id
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     'rating',
@@ -13,7 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       product_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'products',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     },
     { underscored: true }

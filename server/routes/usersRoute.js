@@ -3,7 +3,7 @@ const db = require('../models');
 const validate = require('validate.js');
 const userService = require('../services/userService');
 
-
+//constraints för email, username och imageURL
 const constraints = {
   email: {
     length: {
@@ -32,7 +32,7 @@ const constraints = {
 };
 
 
-// Hämta användarens varukorg
+// get request för att hämta varukorg baserat på ID
 router.get('/:id/getCart', async (req, res) => {
   const id = req.params.id;
   
@@ -41,14 +41,14 @@ router.get('/:id/getCart', async (req, res) => {
   res.status(result.status).json(result.data);
 });
 
-
+//get request för att hämta alla users
 router.get('/', (req, res) => {
   db.user.findAll().then((result) => {
     res.send(result);
   });
 });
 
-
+//post request för att skapa en user
 router.post('/', (req, res) => {
   const user = req.body;
   const invalidData = validate(user, constraints);
@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
   }
 });
 
-
+// put request för att uppdatera user
 router.put('/', (req, res) => {
   const user = req.body;
   const invalidData = validate(user, constraints);
@@ -79,14 +79,14 @@ router.put('/', (req, res) => {
   }
 });
 
-
+// ta bort user
 router.delete('/', (req, res) => {
   db.user
     .destroy({
       where: { id: req.body.id }
     })
     .then(() => {
-      res.json(`Inlägget raderades`);
+      res.json(`Användaren är borttagen`);
     });
 });
 
